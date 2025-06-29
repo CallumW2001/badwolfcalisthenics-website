@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Badwolf Calisthenics</title>
+    <link rel="stylesheet" href="css/styles.css" />
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+
+    <!-- Your Firebase config and initialization -->
+    <script src="js/firebase-config.js"></script>
+
+    <script src="js/app.js" defer></script>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="logo">
+        <img
+          src="images/badwolf_calisthenics_logo-removebg-preview.png"
+          alt="Badwolf Calisthenics Logo"
+        />
+        <h1 class="main-title">Badwolf Calisthenics</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <!-- Added Home button -->
+          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="contact.html">Contact</a></li>
+           <li class="nav-auth">
+      <a href="login.html" id="sign-in-btn" class="button">Login</a>
+      <a href="signup.html" id="sign-up-btn" class="button">Sign Up</a>
+      <a href="index.html" id="logout-btn" class="button" style="display: none;">Logout</a>
+    </li>
+  </ul>
+</nav>
+        </ul>
+      </nav>
+    </header>
+
+    <section class="landing">
+      <div class="landing-text">
+        <h2>Build Strength. Master Movement.</h2>
+        <p>Beginner calisthenics coaching & functional fitness training.</p>
+        <a href="https://yourbookingpage.com" class="cta-button"
+          >Book a Class</a
+        >
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2025 Badwolf Calisthenics. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
