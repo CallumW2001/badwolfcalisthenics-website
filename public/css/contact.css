@@ -1,0 +1,132 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  background-color: #0a0a0a;
+  font-family: "Orbitron", sans-serif;
+  color: #e0e0e0;
+  overflow: hidden; /* prevent scroll */
+  display: flex;
+  flex-direction: column;
+}
+
+header.hero {
+  flex-shrink: 0;
+  background-color: #000;
+  border-bottom: 2px solid #1e1e1e;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Main fills the space between header and footer */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* horizontal center */
+  align-items: center; /* vertical center */
+  padding: 1rem;
+  text-align: center;
+  overflow: hidden; /* no scroll inside main */
+}
+
+/* Contact container styling */
+.contact-container {
+  max-width: 600px;
+  width: 90vw;
+  background-color: #111;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 0 20px rgba(0, 170, 255, 0.3);
+
+  /* Fade in animation */
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 0.3s;
+}
+
+.contact-container h2 {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.5;
+  color: #00aaff;
+  max-width: 100%; /* allow to fill container */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+
+  /* Fade in with delay */
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+  animation-delay: 0.5s;
+}
+
+.contact-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.contact-container input,
+.contact-container textarea,
+.contact-container button {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 6px;
+  background: #222;
+  color: #e0e0e0;
+  font-family: "Orbitron", sans-serif;
+  font-size: 1rem;
+  resize: none;
+
+  /* Start hidden for staggered fade-in */
+  opacity: 0;
+  animation: fadeIn 0.8s ease forwards;
+}
+
+/* Stagger animations on form fields */
+.contact-container input:nth-child(1) {
+  animation-delay: 0.7s;
+}
+.contact-container input:nth-child(2) {
+  animation-delay: 0.9s;
+}
+.contact-container textarea {
+  animation-delay: 1.1s;
+}
+.contact-container button {
+  background-color: #00aaff;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  animation-delay: 1.3s;
+}
+
+.contact-container button:hover {
+  background-color: #008fcc;
+}
+
+/* Footer fixed to bottom, full width */
+footer {
+  background-color: #111;
+  color: #666;
+  font-size: 0.9rem;
+  padding: 1.5rem 0;
+  text-align: center;
+  width: 100vw;
+  bottom: 0;
+  left: 0;
+  flex-shrink: 0;
+  z-index: 100; /* stays on top */
+}
+
+/* Fade-in keyframes */
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}

@@ -36,24 +36,22 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-window.addEventListener("DOMContentLoaded", () => {
-  const navAuth = document.querySelector(".nav-auth");
-  const signInBtn = document.getElementById("sign-in-btn");
-  const signUpBtn = document.getElementById("sign-up-btn");
-  const logoutBtn = document.getElementById("logout-btn");
-
-  firebase.auth().onAuthStateChanged((user) => {
-    // Show auth nav only after we know the auth state
-    navAuth.classList.add("js-ready");
-
-    if (user) {
-      logoutBtn.style.display = "inline-flex";
-      signInBtn.style.display = "none";
-      signUpBtn.style.display = "none";
-    } else {
-      logoutBtn.style.display = "none";
-      signInBtn.style.display = "inline-flex";
-      signUpBtn.style.display = "inline-flex";
-    }
+// Pseudocode example for Firebase auth state
+firebase.auth().onAuthStateChanged((user) => {
+  // First make all auth buttons visible
+  document.querySelectorAll(".nav-auth a").forEach((btn) => {
+    btn.style.visibility = "visible";
   });
+
+  if (user) {
+    // User is signed in, show logout only
+    document.getElementById("logout-btn").style.display = "inline-block";
+    document.getElementById("sign-in-btn").style.display = "none";
+    document.getElementById("sign-up-btn").style.display = "none";
+  } else {
+    // User signed out, show login and sign-up only
+    document.getElementById("logout-btn").style.display = "none";
+    document.getElementById("sign-in-btn").style.display = "inline-block";
+    document.getElementById("sign-up-btn").style.display = "inline-block";
+  }
 });

@@ -1,13 +1,13 @@
+/* Base and common styles for the whole site */
+
 body {
   margin: 0;
   font-family: "Orbitron", sans-serif;
   background-color: #0a0a0a;
   color: #e0e0e0;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Sticky footer base */
 }
 
+/* Header & nav styles used site-wide */
 header.hero {
   display: flex;
   justify-content: space-between;
@@ -15,7 +15,6 @@ header.hero {
   padding: 1rem 2rem;
   background-color: #000;
   border-bottom: 2px solid #1e1e1e;
-  flex-shrink: 0; /* Prevent shrinking */
 }
 
 .logo {
@@ -29,10 +28,14 @@ header.hero {
 }
 
 .logo h1 {
-  display: inline-block;
   font-size: 1.5rem;
   color: #00aaff;
   margin: 0;
+}
+
+nav a.active,
+nav a:hover {
+  color: #00aaff;
 }
 
 nav ul {
@@ -41,12 +44,12 @@ nav ul {
   gap: 1rem;
   margin: 0;
   padding: 0;
-  align-items: center; /* Vertically center all nav items */
+  align-items: center;
 }
 
 nav ul li {
   display: flex;
-  align-items: center; /* Vertically center buttons and links */
+  align-items: center;
 }
 
 nav a {
@@ -57,7 +60,7 @@ nav a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 100%; /* ensure full height for alignment */
+  height: 100%;
 }
 
 nav a:hover {
@@ -70,62 +73,36 @@ nav a.button {
   padding: 0.5rem 1rem;
   border-radius: 5px;
   font-weight: bold;
-  text-decoration: none;
-  transition: background-color 0.3s ease;
   cursor: pointer;
-  height: auto; /* reset if needed */
+  height: auto;
+  transition: background-color 0.3s ease;
 }
 
 nav a.button:hover {
   background-color: #008fcc;
 }
 
-main {
-  flex: 1; /* take up all available space to push footer down */
-  padding: 4rem 2rem;
-  max-width: 1000px;
-  margin: auto;
-}
-
-.landing {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 90vh;
-  text-align: center;
-  background: url("landing-bg.jpg") no-repeat center center/cover;
-  color: #fff;
-}
-
-.landing-text h2 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-  animation: fadeInUp 1s ease-out;
-}
-
-.landing-text p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
-  animation: fadeInUp 1.2s ease-out;
-}
-
-.cta-button {
+/* Buttons used throughout the site */
+button,
+.button {
   background-color: #00aaff;
   color: #000;
   padding: 0.75rem 1.5rem;
   border: none;
   border-radius: 6px;
   font-weight: bold;
+  cursor: pointer;
   transition: background 0.3s;
   text-decoration: none;
-  margin-top: 100px;
   display: inline-block;
 }
 
-.cta-button:hover {
+button:hover,
+.button:hover {
   background-color: #008fcc;
 }
 
+/* Cards and grid layouts used on multiple pages */
 .review-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -150,6 +127,7 @@ main {
   border-radius: 8px;
 }
 
+/* Forms for login, signup, contact, etc. */
 form {
   display: flex;
   flex-direction: column;
@@ -166,150 +144,17 @@ form textarea {
 }
 
 form button {
-  background-color: #00aaff;
-  color: #000;
-  padding: 0.75rem;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-form button:hover {
-  background-color: #008fcc;
-}
-
-footer {
-  text-align: center;
-  padding: 2rem;
-  background-color: #111;
-  color: #666;
-  font-size: 0.9rem;
-  flex-shrink: 0; /* prevent shrinking */
-}
-
-.contact-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* centers horizontally */
-  justify-content: center; /* centers vertically if container height is set */
-  min-height: 70vh; /* enough vertical space to center on page */
-  max-width: 600px; /* wider form */
-  margin: 3rem auto; /* centers container horizontally with margin top/bottom */
-  padding: 1rem;
-  text-align: center; /* centers the heading text */
-}
-
-.contact-container form {
-  width: 100%; /* form fills container width */
-}
-
-.contact-container h2 {
-  margin-bottom: 1.5rem;
-  font-size: 2.5rem;
-  color: #00aaff;
-}
-
-.nav-auth {
-  visibility: hidden;
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.nav-auth.js-ready {
-  visibility: visible;
-}
-
-@keyframes fadeInUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
-.login-container {
-  max-width: 600px; /* wider, but not full width */
-  width: 90vw; /* responsive width on small screens */
-  margin: 6rem auto 3rem auto; /* center horizontally, give some top/bottom margin */
-  padding: 3rem 2.5rem; /* nice padding inside */
-  background-color: #111;
-  border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 170, 255, 0.3);
-  display: flex;
-  flex-direction: column;
-  align-items: center; /* center items horizontally */
-  text-align: center;
-}
-
-.login-container h2 {
-  font-size: 2.5rem;
-  color: #00aaff;
-  margin-bottom: 2rem;
-  font-weight: 700;
-}
-
-.login-container form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1.25rem; /* space between inputs */
-  align-items: center; /* center inputs horizontally */
-}
-
-.login-container input,
-.login-container button {
-  width: 100%;
-  max-width: 400px; /* limit max width of inputs/buttons */
-  padding: 0.85rem 1rem;
-  font-size: 1.1rem;
-  border-radius: 8px;
-  border: none;
   font-family: "Orbitron", sans-serif;
+  font-weight: bold;
 }
 
-.login-container input {
-  background-color: #222;
-  color: #e0e0e0;
-}
-
-.login-container button {
-  background-color: #00aaff;
-  color: #000;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.login-container button:hover {
-  background-color: #008fcc;
-}
-
-.login-container p {
-  margin-top: 1.5rem;
-  font-size: 1rem;
-  color: #ccc;
-}
-
-.login-container p a {
-  color: #00aaff;
-  text-decoration: none;
-  font-weight: 700;
-}
-
-.login-container p a:hover {
-  text-decoration: underline;
-}
-
+.contact-container,
+.login-container,
 .signup-container {
   max-width: 600px;
   width: 90vw;
-  margin: 6rem auto 3rem auto;
-  padding: 3rem 2.5rem;
+  margin: 3rem auto;
+  padding: 2rem 2.5rem;
   background-color: #111;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 170, 255, 0.3);
@@ -319,6 +164,8 @@ footer {
   text-align: center;
 }
 
+.contact-container h2,
+.login-container h2,
 .signup-container h2 {
   font-size: 2.5rem;
   color: #00aaff;
@@ -326,6 +173,7 @@ footer {
   font-weight: 700;
 }
 
+.login-container form,
 .signup-container form {
   width: 100%;
   display: flex;
@@ -334,7 +182,9 @@ footer {
   align-items: center;
 }
 
+.login-container input,
 .signup-container input,
+.login-container button,
 .signup-container button {
   width: 100%;
   max-width: 400px;
@@ -345,35 +195,54 @@ footer {
   font-family: "Orbitron", sans-serif;
 }
 
+.nav-auth a {
+  visibility: hidden; /* hide all auth buttons initially */
+  margin-right: 1rem;
+}
+
+.login-container input,
 .signup-container input {
   background-color: #222;
   color: #e0e0e0;
 }
 
+.login-container button,
 .signup-container button {
   background-color: #00aaff;
   color: #000;
-  font-weight: 700;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
+.login-container button:hover,
 .signup-container button:hover {
   background-color: #008fcc;
 }
 
+.login-container p,
 .signup-container p {
   margin-top: 1.5rem;
   font-size: 1rem;
   color: #ccc;
 }
 
+.login-container p a,
 .signup-container p a {
   color: #00aaff;
   text-decoration: none;
   font-weight: 700;
 }
 
+.login-container p a:hover,
 .signup-container p a:hover {
   text-decoration: underline;
+}
+
+/* Footer common to all pages */
+footer {
+  text-align: center;
+  padding: 2rem;
+  background-color: #111;
+  color: #666;
+  font-size: 0.9rem;
 }

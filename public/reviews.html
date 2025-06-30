@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Reviews - Badwolf Calisthenics</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/reviews.css" />
 
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
@@ -28,8 +29,8 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <!-- Added Home button -->
-          <li><a href="about.html" class="active">About</a></li>
-          <li><a href="reviews.html">Reviews</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="reviews.html" class="active">Reviews</a></li>
           <li><a href="skills.html">Skills</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li class="nav-auth">
@@ -48,33 +49,40 @@
     </header>
 
     <main>
-      <section>
-        <h2>What Our Clients Say</h2>
-        <div class="review-cards">
-          <div class="card">
-            <p>
-              "Badwolf Calisthenics transformed my strength and mobility. Highly
-              recommend!"
-            </p>
-            <strong>- Alex P.</strong>
+      <div class="reviews-section">
+        <h2 class="section-title">What Our Clients Say</h2>
+        <div class="review-carousel">
+          <div class="review-track">
+            <!-- Review cards (set 1) -->
+            <div class="review-card">
+              <p>"Amazing results!"</p>
+              <strong>- Alex</strong>
+            </div>
+            <div class="review-card">
+              <p>"Top-tier coaching."</p>
+              <strong>- Jamie</strong>
+            </div>
+            <div class="review-card">
+              <p>"Highly recommend!"</p>
+              <strong>- Morgan</strong>
+            </div>
+
+            <!-- Review cards (set 2 - duplicates) -->
+            <div class="review-card">
+              <p>"Amazing results!"</p>
+              <strong>- Alex</strong>
+            </div>
+            <div class="review-card">
+              <p>"Top-tier coaching."</p>
+              <strong>- Jamie</strong>
+            </div>
+            <div class="review-card">
+              <p>"Highly recommend!"</p>
+              <strong>- Morgan</strong>
+            </div>
           </div>
-          <div class="card">
-            <p>
-              "The coaching is clear, progressive, and motivating. Love the
-              community vibe."
-            </p>
-            <strong>- Jamie L.</strong>
-          </div>
-          <div class="card">
-            <p>
-              "I started as a beginner and now I can do pull-ups and handstands.
-              Incredible progress!"
-            </p>
-            <strong>- Morgan S.</strong>
-          </div>
-          <!-- Add more review cards here -->
         </div>
-      </section>
+      </div>
     </main>
 
     <footer>

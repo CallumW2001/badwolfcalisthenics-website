@@ -1,0 +1,103 @@
+/* Base styles (keep as before) */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+  font-family: "Orbitron", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+header.hero {
+  flex-shrink: 0;
+  background-color: #000;
+  border-bottom: 2px solid #1e1e1e;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  overflow: hidden; /* prevent scroll */
+  box-sizing: border-box;
+}
+
+main section {
+  max-width: 1200px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Make the "Gallery" heading blue */
+main section > h2 {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 3rem;
+  line-height: 1.5;
+  color: #00aaff;
+  max-width: 100%; /* allow to fill container */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+
+  opacity: 0; /* start hidden */
+  animation: fadeIn 3s ease forwards;
+  animation-delay: calc(var(--img-index) * 0.2s); /* stagger fade */
+}
+
+/* Gallery grid with 2 rows and 3 columns */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+  height: 70vh; /* fill big portion of viewport height */
+  justify-items: center;
+  align-items: center;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+
+  opacity: 0; /* start hidden */
+  animation: fadeIn 1s ease forwards;
+  animation-delay: calc(var(--img-index) * 0.2s); /* stagger fade */
+  /* will set --img-index in JS */
+}
+
+/* Footer fixed at bottom */
+footer {
+  flex-shrink: 0;
+  background-color: #111;
+  color: #666;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  border-top: 1px solid #222;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

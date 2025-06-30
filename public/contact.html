@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Contact - Badwolf Calisthenics</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/contact.css" />
 
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
@@ -28,10 +29,10 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <!-- Added Home button -->
-          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="reviews.html">Reviews</a></li>
           <li><a href="skills.html">Skills</a></li>
-          <li><a href="contact.html">Contact</a></li>
+          <li><a href="contact.html" class="active">Contact</a></li>
           <li class="nav-auth">
             <a href="login.html" id="sign-in-btn" class="button">Login</a>
             <a href="signup.html" id="sign-up-btn" class="button">Sign Up</a>
@@ -50,7 +51,7 @@
     <main>
       <section class="contact-container">
         <h2>Send An Enquiry</h2>
-        <form id="contact-form" action="#" method="post">
+        <form id="contact-form">
           <input type="text" name="name" placeholder="Your Name" required />
           <input
             type="email"
@@ -73,5 +74,39 @@
     <footer>
       <p>&copy; 2025 Badwolf Calisthenics. All rights reserved.</p>
     </footer>
+
+    <script>
+      const form = document.getElementById("contact-form");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const formData = {
+          name: form.name.value,
+          email: form.email.value,
+          message: form.message.value,
+        };
+
+        try {
+          const response = await fetch("/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            alert(result.message);
+            form.reset();
+          } else {
+            alert(result.error || "Something went wrong.");
+          }
+        } catch (error) {
+          alert("Failed to send message.");
+          console.error(error);
+        }
+      });
+    </script>
   </body>
 </html>

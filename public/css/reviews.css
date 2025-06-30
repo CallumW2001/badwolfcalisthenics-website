@@ -1,0 +1,167 @@
+/* Reset and base */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body,
+html {
+  height: 100%;
+  font-family: "Orbitron", sans-serif;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Header */
+header.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #000;
+  border-bottom: 2px solid #1e1e1e;
+  flex-shrink: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.logo img {
+  height: 50px;
+  margin-right: 1rem;
+}
+
+.logo h1 {
+  color: #00aaff;
+  font-size: 1.5rem;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  align-items: center;
+}
+
+nav a {
+  color: #ccc;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* Main content */
+main {
+  flex: 1;
+  display: flex;
+  justify-content: flex-start; /* Align items at the top */
+  align-items: center; /* center horizontally */
+  padding: 2rem 1rem;
+  padding-top: 20rem; /* extra space from top, adjust as needed */
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+}
+
+.reviews-section {
+  max-width: 1000px;
+  width: 100%;
+}
+
+.section-title {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 1.5;
+  color: #00aaff;
+  max-width: 100%; /* allow to fill container */
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 100px;
+}
+/* Carousel container - hides overflow */
+.review-carousel {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid #222;
+  background-color: #111;
+  padding: 1rem 0;
+}
+
+/* Track that scrolls */
+.review-track {
+  display: flex;
+  gap: 1.5rem;
+  animation: scroll-left 25s linear infinite;
+}
+
+/* Review cards */
+.review-card {
+  background-color: #1a1a1a;
+  border-left: 4px solid #00aaff;
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+  min-width: 250px;
+  color: #e0e0e0;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  user-select: none;
+  box-shadow: 0 0 10px rgba(0, 170, 255, 0.3);
+}
+
+/* Text inside cards */
+.review-card p {
+  margin-bottom: 0.5rem;
+  font-style: italic;
+}
+
+.review-card strong {
+  align-self: flex-end;
+  font-weight: bold;
+  color: #00aaff;
+}
+
+/* Footer fixed at bottom */
+footer {
+  text-align: center;
+  padding: 1.5rem 1rem;
+  background-color: #111;
+  color: #666;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #222;
+}
+
+/* Scroll animation */
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .review-card {
+    min-width: 200px;
+    font-size: 1rem;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+}

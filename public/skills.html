@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Gallery - Badwolf Calisthenics</title>
     <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/skills.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
     <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
@@ -28,9 +33,9 @@
         <ul>
           <li><a href="index.html">Home</a></li>
           <!-- Added Home button -->
-          <li><a href="about.html" class="active">About</a></li>
+          <li><a href="about.html">About</a></li>
           <li><a href="reviews.html">Reviews</a></li>
-          <li><a href="skills.html">Skills</a></li>
+          <li><a href="skills.html" class="active">Skills</a></li>
           <li><a href="contact.html">Contact</a></li>
           <li class="nav-auth">
             <a href="login.html" id="sign-in-btn" class="button">Login</a>
@@ -49,14 +54,14 @@
 
     <main>
       <section>
-        <h2>Gallery</h2>
+        <h2>Skills</h2>
         <div class="gallery-grid">
-          <img src="images/gallery1.jpg" alt="Calisthenics Pose 1" />
-          <img src="images/gallery2.jpg" alt="Calisthenics Pose 2" />
-          <img src="images/gallery3.jpg" alt="Calisthenics Pose 3" />
-          <img src="images/gallery4.jpg" alt="Calisthenics Pose 4" />
-          <img src="images/gallery5.jpg" alt="Calisthenics Pose 5" />
-          <img src="images/gallery6.jpg" alt="Calisthenics Pose 6" />
+          <img src="images/Room 2.jpg" alt="Calisthenics Pose 1" />
+          <img src="images/Room 2.jpg" alt="Calisthenics Pose 2" />
+          <img src="images/Room 2.jpg" alt="Calisthenics Pose 3" />
+          <img src="images/Room 2.jpg" alt="Calisthenics Pose 4" />
+          <img src="images/Room 2.jpg" alt="Calisthenics Pose 5" />
+          <img src="images/Room 2.jpg" alt="Calisthenics Pose 6" />
           <!-- Add more images here -->
         </div>
       </section>
@@ -65,5 +70,11 @@
     <footer>
       <p>&copy; 2025 Badwolf Calisthenics. All rights reserved.</p>
     </footer>
+
+    <script>
+      document.querySelectorAll(".gallery-grid img").forEach((img, i) => {
+        img.style.setProperty("--img-index", i);
+      });
+    </script>
   </body>
 </html>

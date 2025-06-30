@@ -1,0 +1,122 @@
+/* Landing page container */
+.landing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertically center */
+  align-items: center; /* horizontally center */
+  height: 80vh; /* fixed height for landing content */
+  text-align: center;
+  background: url("landing-bg.jpg") no-repeat center center/cover;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Prevent page scrolling only on main page */
+body {
+  overflow: hidden;
+}
+
+/* Landing page text */
+.landing-text h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: fadeInUp 1s ease-out;
+}
+
+.landing-text p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+/* CTA button styled as a blue button with white text */
+.cta-button {
+  margin-top: 25px;
+  background-color: #007bff; /* Bootstrap-style blue */
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  font-family: "Orbitron", sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+/* Fixed footer at bottom of viewport on main page */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #111;
+  color: #666;
+  text-align: center;
+  padding: 1rem 0;
+  font-size: 0.9rem;
+  z-index: 9999;
+}
+.cta-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.cta-button {
+  /* your existing styles */
+  height: 48px; /* example height, set your button height here if fixed */
+  line-height: 48px;
+  padding: 0 1.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+}
+
+.instagram-link {
+  margin-top: 25px; /* or 1px, adjust as needed */
+  display: inline-flex;
+  height: 48px; /* match button height */
+  width: 48px; /* keep square */
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #fff; /* optional: white background for contrast */
+  box-shadow: 0 0 6px rgba(225, 48, 108, 0.5);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.instagram-link svg {
+  height: 24px; /* scale inside */
+  width: 24px;
+  fill: #e1306c;
+  transition: fill 0.3s ease;
+}
+
+.instagram-link:hover {
+  background-color: #cc3b6b3a;
+  box-shadow: 0 0 10px #e1306c;
+  transform: scale(1.1);
+}
+
+.instagram-link:hover svg {
+  fill: white;
+}
+
+/* Fade in up animation used only on landing */
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
