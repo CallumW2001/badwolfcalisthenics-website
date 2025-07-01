@@ -20,15 +20,19 @@ app.get("/", (req, res) => {
 });
 
 app.get("/about", (req, res) => {
-  res.render("about", { currentPage: "about" }); // views/about.ejs
+  res.render("about", { currentPage: "about" });
 });
 
 app.get("/skills", (req, res) => {
-  res.render("skills", { currentPage: "skills" }); // views/about.ejs
+  res.render("skills", { currentPage: "skills" });
 });
 
 app.get("/reviews", (req, res) => {
-  res.render("reviews", { currentPage: "reviews" }); // views/about.ejs
+  res.render("reviews", { currentPage: "reviews" });
+});
+
+app.get("/your-training-plans", (req, res) => {
+  res.render("your-training-plans", { currentPage: "your-training-plans" });
 });
 
 app.get("/contact", (req, res) => {
@@ -40,11 +44,11 @@ app.get("/contact", (req, res) => {
 });
 
 app.get("/login", (req, res) => {
-  res.render("login"); // views/about.ejs
+  res.render("login");
 });
 
 app.get("/signup", (req, res) => {
-  res.render("signup"); // views/about.ejs
+  res.render("signup");
 });
 
 // POST route to handle contact form submissions

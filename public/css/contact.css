@@ -110,19 +110,6 @@ main {
   background-color: #008fcc;
 }
 
-/* Footer fixed to bottom, full width */
-footer {
-  background-color: #111;
-  color: #666;
-  font-size: 0.9rem;
-  padding: 1.5rem 0;
-  text-align: center;
-  width: 100vw;
-  bottom: 0;
-  left: 0;
-  flex-shrink: 0;
-  z-index: 100; /* stays on top */
-}
 .success-message {
   color: green;
   margin-top: 20px;

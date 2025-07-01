@@ -8,6 +8,14 @@
   </div>
   <nav>
     <ul>
+      <li id="training-plans-tab" style="display: none">
+        <a
+          href="your-training-plans"
+          class="<%= currentPage === 'your-training-plans' ? 'active' : '' %>"
+        >
+          Your Training Plans
+        </a>
+      </li>
       <li>
         <a href="/" class="<%= currentPage === 'home' ? 'active' : '' %>"
           >Home</a
@@ -40,10 +48,38 @@
       <li class="nav-auth">
         <a href="login" id="sign-in-btn" class="button">Login</a>
         <a href="signup" id="sign-up-btn" class="button">Sign Up</a>
-        <a href="index" id="logout-btn" class="button" style="display: none"
+        <a href="/" id="logout-btn" class="button" style="display: none"
           >Logout</a
         >
       </li>
     </ul>
   </nav>
 </header>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+  import {
+    getAuth,
+    onAuthStateChanged,
+  } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+  const firebaseConfig = {
+    apiKey: "AIzaSyAlboKcxcOZmqWLlt79VEovpWOFSKHgBbI",
+    authDomain: "badwolfcalisthenics-77163.firebaseapp.com",
+    projectId: "badwolfcalisthenics-77163",
+    // ... any other needed options
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  onAuthStateChanged(auth, (user) => {
+    const trainingPlansTab = document.getElementById("training-plans-tab");
+
+    if (user) {
+      trainingPlansTab.style.display = "inline-block";
+    } else {
+      trainingPlansTab.style.display = "none";
+    }
+  });
+</script>
