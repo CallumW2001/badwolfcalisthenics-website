@@ -31,6 +31,7 @@ body {
 
 /* CTA button styled as a blue button with white text */
 .cta-button {
+  animation: fadeInUp 1.5s ease-out;
   margin-top: 25px;
   background-color: #007bff; /* Bootstrap-style blue */
   color: white;
@@ -79,6 +80,7 @@ footer {
 }
 
 .instagram-link {
+  animation: fadeInUp 1.8s ease-out;
   margin-top: 25px; /* or 1px, adjust as needed */
   display: inline-flex;
   height: 48px; /* match button height */

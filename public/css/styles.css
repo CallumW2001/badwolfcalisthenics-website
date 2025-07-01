@@ -1,5 +1,7 @@
 /* Base and common styles for the whole site */
 
+@import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap");
+
 body {
   margin: 0;
   font-family: "Orbitron", sans-serif;
@@ -198,6 +200,14 @@ form button {
 .nav-auth a {
   visibility: hidden; /* hide all auth buttons initially */
   margin-right: 1rem;
+}
+
+.main-title {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #00aaff;
+  margin-bottom: 1rem;
 }
 
 .login-container input,

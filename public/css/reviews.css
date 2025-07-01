@@ -87,6 +87,7 @@ main {
 }
 /* Carousel container - hides overflow */
 .review-carousel {
+  animation: fadeInUp 1s ease-in;
   width: 100%;
   overflow: hidden;
   border-radius: 8px;
@@ -144,6 +145,10 @@ footer {
   border-top: 1px solid #222;
 }
 
+.section-title {
+  animation: fadeInUp 1s ease-in;
+}
+
 /* Scroll animation */
 @keyframes scroll-left {
   0% {
@@ -151,6 +156,17 @@ footer {
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 

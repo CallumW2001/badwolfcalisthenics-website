@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Contact - Badwolf Calisthenics</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/contact.css" />
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+
+    <!-- Firebase Config -->
+    <script src="js/firebase-config.js"></script>
+
+    <script src="js/app.js" defer></script>
+    <style>
+      /* Make sure messages are hidden by default */
+      .success-message,
+      .error-message {
+        display: none;
+        margin-top: 1em;
+      }
+      .success-message {
+        color: green;
+      }
+      .error-message {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('partials/header') %>
+
+    <main>
+      <section class="contact-container">
+        <h2>Send An Enquiry</h2>
+
+        <form id="contact-form">
+          <input type="text" name="name" placeholder="Your Name" required />
+          <input
+            type="email"
+            name="email"
+            placeholder="Your Email"
+            required
+            autocomplete="email"
+          />
+          <textarea
+            name="message"
+            placeholder="Your Message"
+            rows="5"
+            required
+          ></textarea>
+          <button type="submit">Send Message</button>
+
+          <!-- Success and error messages -->
+          <p class="success-message" id="success-message">
+            Enquiry sent successfully!
+          </p>
+          <p class="error-message" id="error-message">
+            Failed to send message. Please try again.
+          </p>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2025 Badwolf Calisthenics. All rights reserved.</p>
+    </footer>
+
+    <script>
+      const form = document.getElementById("contact-form");
+      const successMessage = document.getElementById("success-message");
+      const errorMessage = document.getElementById("error-message");
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        // Hide messages on new submit
+        successMessage.style.display = "none";
+        errorMessage.style.display = "none";
+
+        const formData = {
+          name: form.name.value,
+          email: form.email.value,
+          message: form.message.value,
+        };
+
+        try {
+          const response = await fetch("/contact", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+          });
+
+          const result = await response.json();
+
+          if (response.ok) {
+            successMessage.style.display = "block";
+            errorMessage.style.display = "none";
+            form.reset();
+          } else {
+            successMessage.style.display = "none";
+            errorMessage.textContent =
+              result.error || "Failed to send message. Please try again.";
+            errorMessage.style.display = "block";
+          }
+        } catch (error) {
+          successMessage.style.display = "none";
+          errorMessage.textContent =
+            "Failed to send message. Please try again.";
+          errorMessage.style.display = "block";
+          console.error(error);
+        }
+      });
+    </script>
+  </body>
+</html>

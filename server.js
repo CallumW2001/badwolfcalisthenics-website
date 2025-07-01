@@ -8,12 +8,43 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "views"));
+
 // Serve static files
 app.use(express.static(path.join(__dirname, "public")));
 
 // Route for homepage
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "index.html"));
+  res.render("index", { currentPage: "home" });
+});
+
+app.get("/about", (req, res) => {
+  res.render("about", { currentPage: "about" }); // views/about.ejs
+});
+
+app.get("/skills", (req, res) => {
+  res.render("skills", { currentPage: "skills" }); // views/about.ejs
+});
+
+app.get("/reviews", (req, res) => {
+  res.render("reviews", { currentPage: "reviews" }); // views/about.ejs
+});
+
+app.get("/contact", (req, res) => {
+  res.render("contact", {
+    sent: req.query.sent === "true",
+    error: req.query.error === "true",
+    currentPage: "contact",
+  });
+});
+
+app.get("/login", (req, res) => {
+  res.render("login"); // views/about.ejs
+});
+
+app.get("/signup", (req, res) => {
+  res.render("signup"); // views/about.ejs
 });
 
 // POST route to handle contact form submissions
@@ -46,10 +77,10 @@ app.post("/contact", async (req, res) => {
 
   try {
     await transporter.sendMail(mailOptions);
-    res.json({ success: true, message: "Message sent!" });
+    res.json({ success: true });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Failed to send message." });
+    res.status(500).json({ success: false, error: "Failed to send message." });
   }
 });
 

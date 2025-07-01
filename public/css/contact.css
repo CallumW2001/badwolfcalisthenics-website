@@ -123,7 +123,17 @@ footer {
   flex-shrink: 0;
   z-index: 100; /* stays on top */
 }
+.success-message {
+  color: green;
+  margin-top: 20px;
+  font-weight: bold;
+}
 
+.error-message {
+  color: red;
+  margin-top: 20px;
+  font-weight: bold;
+}
 /* Fade-in keyframes */
 @keyframes fadeIn {
   to {
