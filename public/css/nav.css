@@ -66,7 +66,6 @@ nav a.button {
   font-weight: bold;
   cursor: pointer;
   height: auto;
-  transition: background-color 0.3s ease;
 }
 
 nav a.button:hover {
@@ -98,12 +97,11 @@ nav a.button:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #0a0a0a;
+  background-color: #0a0a0a60;
   z-index: 2000;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 2rem;
 }
 
 .navbar-overlay.open {
@@ -161,11 +159,12 @@ nav a.button:hover {
   display: none;
   position: fixed;
   inset: 0;
-  background-color: #0a0a0a;
+  background-color: #0a0a0aec;
   z-index: 2000;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 
 .navbar-overlay.open {
@@ -179,7 +178,12 @@ nav a.button:hover {
   gap: 2rem;
   padding: 0;
   margin: 0;
+  margin-left: auto;
+  margin-right: auto;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 400px;
 }
 
 .navbar-overlay a {
@@ -198,7 +202,7 @@ nav a.button:hover {
   gap: 0.5rem;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 768px) {
   .navbar-desktop {
     display: none;
   }
@@ -212,9 +216,7 @@ nav a.button:hover {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 1rem;
-    padding: 0;
-    margin: 0;
+    justify-content: center;
   }
 
   /* Make nav-auth container vertical, full width, and aligned */
@@ -222,6 +224,7 @@ nav a.button:hover {
     display: flex;
     flex-direction: column; /* stack buttons vertically */
     align-items: center;
+    justify-content: center;
     width: 100%;
     margin-top: 1.5rem;
     gap: 1rem;
@@ -235,7 +238,9 @@ nav a.button:hover {
 
   /* Buttons fill most of the width and center text */
   .navbar-overlay .nav-auth a.button {
-    margin-left: auto;
-    margin-right: auto;
+    width: 80%;
+    max-width: 250px;
+    margin: 0 auto;
+    text-align: center;
   }
 }

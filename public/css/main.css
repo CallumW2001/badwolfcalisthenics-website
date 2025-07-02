@@ -141,3 +141,12 @@ main {
     line-height: normal; /* reset line-height for better text centering */
   }
 }
+
+.landing img {
+  width: 100%;
+  max-width: 600px; /* limit max width */
+  height: auto; /* maintain aspect ratio */
+  margin-top: 3rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
