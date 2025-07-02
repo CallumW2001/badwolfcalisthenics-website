@@ -30,8 +30,8 @@ main section > h2 {
 /* Gallery grid with 2 rows and 3 columns */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(3, 1fr);
   gap: 1.5rem;
   width: 100%;
   height: 100%; /* fill big portion of viewport height */
@@ -60,5 +60,17 @@ main section > h2 {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-grid {
+    grid-template-columns: repeat(1, 1fr); /* 2 columns on small screens */
+    grid-template-rows: repeat(6, 1fr); /* 3 rows */
+  }
+
+  main section > h2 {
+    font-size: 2rem; /* smaller heading */
+    text-align: center; /* center on small screens */
   }
 }
