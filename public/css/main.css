@@ -4,7 +4,8 @@
   flex-direction: column;
   justify-content: center; /* vertically center */
   align-items: center; /* horizontally center */
-  height: 80vh; /* fixed height for landing content */
+  min-height: 80vh;
+  overflow-y: auto;
   text-align: center;
   background: url("landing-bg.jpg") no-repeat center center/cover;
   color: #fff;
