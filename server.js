@@ -14,6 +14,14 @@ app.set("view engine", "ejs");
 app.use(expressLayouts);
 app.set("views", path.join(__dirname, "views"));
 
+app.use((req, res, next) => {
+  const host = req.headers.host;
+  if (host.includes(".elasticbeanstalk.com")) {
+    return res.redirect(301, "https://www.badwolfcalisthenics.com" + req.url);
+  }
+  next();
+});
+
 // Serve static files
 app.use(express.static(path.join(__dirname, "public")));
 
