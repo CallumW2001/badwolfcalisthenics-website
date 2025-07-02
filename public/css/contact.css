@@ -11,6 +11,13 @@
   color: red;
 }
 
+.contact-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
 .contact-container {
   width: 75%; /* Let it be responsive */
   max-width: 600px; /* Cap on large screens */
@@ -19,7 +26,6 @@
   border-radius: 12px;
   padding: 2rem;
   box-shadow: 0 0 20px rgba(186, 190, 192, 0.3);
-
   opacity: 0;
   animation: fadeIn 1s ease forwards;
   animation-delay: 0.3s;
