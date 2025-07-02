@@ -4,6 +4,22 @@
     <meta charset="UTF-8" />
     <title><%= title %></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="<%= description || '' %>" />
+    <link rel="canonical" href="<%= canonical %>" />
+
+    <meta property="og:title" content="<%= title %>" />
+    <meta property="og:description" content="<%= description || '' %>" />
+    <meta property="og:url" content="<%= canonical %>" />
+    <meta property="og:type" content="website" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="<%= title %>" />
+    <meta name="twitter:description" content="<%= description || '' %>" />
+    <meta name="twitter:url" content="<%= canonical %>" />
+    <meta
+      name="twitter:image"
+      content="https://www.badwolfcalisthenics.com/images/badwolf_calisthenics_logo-removebg-preview.png"
+    />
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/css/styles.css" />
