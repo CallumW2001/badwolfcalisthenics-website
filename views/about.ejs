@@ -1,72 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About - Badwolf Calisthenics</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/about.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+<link rel="stylesheet" href="css/about.css" />
 
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+<section class="about-text">
+  <h2>About Us</h2>
+</section>
+<div class="carousel-container">
+  <div class="about-carousel">
+    <button class="carousel-btn prev">&#10094;</button>
+    <img src="images/Room 2.jpg" alt="Slide 1" class="carousel-slide active" />
+    <img src="images/Dumbbells 6.jpg" alt="Slide 2" class="carousel-slide" />
+    <img src="images/Dumbbells 5.jpg" alt="Slide 3" class="carousel-slide" />
+    <button class="carousel-btn next">&#10095;</button>
+  </div>
+</div>
 
-    <!-- Firebase Config -->
-    <script src="js/firebase-config.js"></script>
-    <script src="js/app.js" defer></script>
-    <script src="js/carousel.js" defer></script>
-  </head>
-  <body>
-    <%- include('partials/header') %>
-    <main>
-      <section class="about-text">
-        <h2>About Us</h2>
-      </section>
-      <div class="carousel-container">
-        <div class="about-carousel">
-          <button class="carousel-btn prev">&#10094;</button>
-          <img
-            src="images/Room 2.jpg"
-            alt="Slide 1"
-            class="carousel-slide active"
-          />
-          <img
-            src="images/Dumbbells 6.jpg"
-            alt="Slide 2"
-            class="carousel-slide"
-          />
-          <img
-            src="images/Dumbbells 5.jpg"
-            alt="Slide 3"
-            class="carousel-slide"
-          />
-          <button class="carousel-btn next">&#10095;</button>
-        </div>
-      </div>
-
-      <section class="about-text">
-        <p>
-          At Badwolf Calisthenics, we're passionate about unlocking the full
-          potential of the human body through bodyweight strength, mobility, and
-          endurance training. Whether you're a complete beginner or looking to
-          advance your skill set, our structured coaching is built to help you
-          move better, feel stronger, and train with purpose.
-        </p>
-        <p>
-          We believe in functional fitness that carries over into your daily
-          life. Our sessions are supportive, challenging, and rooted in solid
-          principles of progression. Join our community and start mastering your
-          movement.
-        </p>
-      </section>
-    </main>
-
-    <footer>
-      <p>&copy; 2025 Badwolf Calisthenics. All rights reserved.</p>
-    </footer>
-  </body>
-</html>
+<section class="about-text">
+  <p>
+    At Badwolf Calisthenics, we're passionate about unlocking the full potential
+    of the human body through bodyweight strength, mobility, and endurance
+    training. Whether you're a complete beginner or looking to advance your
+    skill set, our structured coaching is built to help you move better, feel
+    stronger, and train with purpose.
+  </p>
+  <p>
+    We believe in functional fitness that carries over into your daily life. Our
+    sessions are supportive, challenging, and rooted in solid principles of
+    progression. Join our community and start mastering your movement.
+  </p>
+</section>

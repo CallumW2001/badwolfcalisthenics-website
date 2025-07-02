@@ -1,3 +1,5 @@
+<link rel="stylesheet" href="css/nav.css" />
+
 <header class="hero">
   <div class="logo">
     <img
@@ -6,7 +8,12 @@
     />
     <h1 class="main-title">Badwolf Calisthenics</h1>
   </div>
-  <nav>
+
+  <!-- Menu toggle button for small screens -->
+  <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+
+  <!-- Regular nav bar (desktop) -->
+  <nav class="navbar-desktop">
     <ul>
       <li id="training-plans-tab" style="display: none">
         <a
@@ -54,32 +61,97 @@
       </li>
     </ul>
   </nav>
+
+  <!-- Mobile fullscreen overlay -->
+  <nav class="navbar-overlay">
+    <ul>
+      <!-- Copy same nav links for mobile -->
+      <li id="training-plans-tab-mobile" style="display: none">
+        <a
+          href="your-training-plans"
+          class="<%= currentPage === 'your-training-plans' ? 'active' : '' %>"
+        >
+          Your Training Plans
+        </a>
+      </li>
+      <li>
+        <a href="/" class="<%= currentPage === 'home' ? 'active' : '' %>"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a href="about" class="<%= currentPage === 'about' ? 'active' : '' %>"
+          >About</a
+        >
+      </li>
+      <li>
+        <a
+          href="reviews"
+          class="<%= currentPage === 'reviews' ? 'active' : '' %>"
+          >Reviews</a
+        >
+      </li>
+      <li>
+        <a href="skills" class="<%= currentPage === 'skills' ? 'active' : '' %>"
+          >Skills</a
+        >
+      </li>
+      <li>
+        <a
+          href="contact"
+          class="<%= currentPage === 'contact' ? 'active' : '' %>"
+          >Contact</a
+        >
+      </li>
+      <li class="nav-auth">
+        <a href="login" id="sign-in-btn-mobile" class="button">Login</a>
+        <a href="signup" id="sign-up-btn-mobile" class="button">Sign Up</a>
+        <a href="/" id="logout-btn-mobile" class="button" style="display: none"
+          >Logout</a
+        >
+      </li>
+    </ul>
+  </nav>
 </header>
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-  import {
-    getAuth,
-    onAuthStateChanged,
-  } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navbarOverlay = document.querySelector(".navbar-overlay");
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyAlboKcxcOZmqWLlt79VEovpWOFSKHgBbI",
-    authDomain: "badwolfcalisthenics-77163.firebaseapp.com",
-    projectId: "badwolfcalisthenics-77163",
-    // ... any other needed options
-  };
+    if (menuToggle && navbarOverlay) {
+      menuToggle.addEventListener("click", () => {
+        navbarOverlay.classList.toggle("open");
+      });
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-
-  onAuthStateChanged(auth, (user) => {
-    const trainingPlansTab = document.getElementById("training-plans-tab");
-
-    if (user) {
-      trainingPlansTab.style.display = "inline-block";
-    } else {
-      trainingPlansTab.style.display = "none";
+      navbarOverlay.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navbarOverlay.classList.remove("open");
+        });
+      });
     }
+
+    const trainingPlansTab = document.getElementById("training-plans-tab");
+    const trainingPlansTabMobile = document.getElementById(
+      "training-plans-tab-mobile"
+    );
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        // Show "Your Training Plans"
+        if (trainingPlansTab) trainingPlansTab.style.display = "inline-block";
+        if (trainingPlansTabMobile)
+          trainingPlansTabMobile.style.display = "inline-block";
+
+        // Other UI updates...
+      } else {
+        // Hide "Your Training Plans"
+        if (trainingPlansTab) trainingPlansTab.style.display = "none";
+        if (trainingPlansTabMobile)
+          trainingPlansTabMobile.style.display = "none";
+
+        // Other UI updates...
+      }
+    });
   });
 </script>

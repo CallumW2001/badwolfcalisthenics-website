@@ -1,6 +1,8 @@
 const express = require("express");
 const nodemailer = require("nodemailer");
+const expressLayouts = require("express-ejs-layouts");
 const path = require("path");
+const { title } = require("process");
 
 const app = express();
 
@@ -9,30 +11,36 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.set("view engine", "ejs");
+app.use(expressLayouts);
 app.set("views", path.join(__dirname, "views"));
 
 // Serve static files
 app.use(express.static(path.join(__dirname, "public")));
 
+app.set("layout", "layout"); // Default layout file: views/layout.ejs
+
 // Route for homepage
 app.get("/", (req, res) => {
-  res.render("index", { currentPage: "home" });
+  res.render("index", { currentPage: "home", title: "Badwolf Calisthenics" });
 });
 
 app.get("/about", (req, res) => {
-  res.render("about", { currentPage: "about" });
+  res.render("about", { currentPage: "about", title: "About" });
 });
 
 app.get("/skills", (req, res) => {
-  res.render("skills", { currentPage: "skills" });
+  res.render("skills", { currentPage: "skills", title: "Skills" });
 });
 
 app.get("/reviews", (req, res) => {
-  res.render("reviews", { currentPage: "reviews" });
+  res.render("reviews", { currentPage: "reviews", title: "Reviews" });
 });
 
 app.get("/your-training-plans", (req, res) => {
-  res.render("your-training-plans", { currentPage: "your-training-plans" });
+  res.render("your-training-plans", {
+    currentPage: "your-training-plans",
+    title: "Your Training Plans",
+  });
 });
 
 app.get("/contact", (req, res) => {
@@ -40,15 +48,16 @@ app.get("/contact", (req, res) => {
     sent: req.query.sent === "true",
     error: req.query.error === "true",
     currentPage: "contact",
+    title: "Contact Us",
   });
 });
 
 app.get("/login", (req, res) => {
-  res.render("login");
+  res.render("login", { title: "Login", currentPage: "login" });
 });
 
 app.get("/signup", (req, res) => {
-  res.render("signup");
+  res.render("signup", { title: "Sign Up", currentPage: "signup" });
 });
 
 // POST route to handle contact form submissions
@@ -88,8 +97,8 @@ app.post("/contact", async (req, res) => {
   }
 });
 
-// Start server
+//Start Server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Server running on port ${PORT}`);
 });

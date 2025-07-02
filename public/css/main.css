@@ -11,9 +11,9 @@
   overflow: hidden;
 }
 
-/* Prevent page scrolling only on main page */
-body {
-  overflow: hidden;
+main {
+  flex: 1; /* take all available space between header and footer */
+  padding: 2rem 1rem;
 }
 
 /* Landing page text */

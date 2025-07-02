@@ -2,90 +2,27 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap");
 
+main {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Align items at the top */
+  align-items: center; /* center horizontally */
+  flex-direction: column;
+  text-align: center;
+  position: relative;
+}
+
 html,
 body {
-  height: 100%;
   margin: 0;
   display: flex;
   flex-direction: column;
   font-family: "Orbitron", sans-serif;
   background-color: #0a0a0a;
   color: #e0e0e0;
-}
-
-/* Header & nav styles used site-wide */
-header.hero {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 2rem;
-  background-color: #000;
-  border-bottom: 2px solid #1e1e1e;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-}
-
-.logo img {
-  height: 50px;
-  margin-right: 1rem;
-}
-
-.logo h1 {
-  font-size: 1.5rem;
-  color: #00aaff;
-  margin: 0;
-}
-
-nav a.active,
-nav a:hover {
-  color: #00aaff;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-}
-
-nav ul li {
-  display: flex;
-  align-items: center;
-}
-
-nav a {
-  text-decoration: none;
-  color: #ccc;
-  font-weight: bold;
-  transition: color 0.3s;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-}
-
-nav a:hover {
-  color: #00aaff;
-}
-
-nav a.button {
-  background-color: #00aaff;
-  color: #000;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  height: auto;
-  transition: background-color 0.3s ease;
-}
-
-nav a.button:hover {
-  background-color: #008fcc;
+  height: 100%; /* allow content to define height */
+  min-height: 100%;
+  overflow-x: hidden;
 }
 
 /* Buttons used throughout the site */
@@ -154,6 +91,52 @@ form button {
   font-weight: bold;
 }
 
+.main-title {
+  font-family: "Oswald", sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #00aaff;
+  margin-bottom: 1rem;
+}
+
+.login-container input,
+.signup-container input {
+  background-color: #222;
+  color: #e0e0e0;
+}
+
+.login-container button,
+.signup-container button {
+  background-color: #00aaff;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-container button:hover,
+.signup-container button:hover {
+  background-color: #008fcc;
+}
+
+.login-container p,
+.signup-container p {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.login-container p a,
+.signup-container p a {
+  color: #00aaff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.login-container p a:hover,
+.signup-container p a:hover {
+  text-decoration: underline;
+}
+
 .contact-container,
 .login-container,
 .signup-container {
@@ -199,62 +182,6 @@ form button {
   border-radius: 8px;
   border: none;
   font-family: "Orbitron", sans-serif;
-}
-
-.nav-auth a {
-  visibility: hidden; /* hide all auth buttons initially */
-  margin-right: 1rem;
-}
-
-main {
-  flex: 1; /* take all available space between header and footer */
-  padding: 2rem 1rem;
-}
-
-.main-title {
-  font-family: "Oswald", sans-serif;
-  font-weight: 700;
-  font-size: 2.5rem;
-  color: #00aaff;
-  margin-bottom: 1rem;
-}
-
-.login-container input,
-.signup-container input {
-  background-color: #222;
-  color: #e0e0e0;
-}
-
-.login-container button,
-.signup-container button {
-  background-color: #00aaff;
-  color: #000;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.login-container button:hover,
-.signup-container button:hover {
-  background-color: #008fcc;
-}
-
-.login-container p,
-.signup-container p {
-  margin-top: 1.5rem;
-  font-size: 1rem;
-  color: #ccc;
-}
-
-.login-container p a,
-.signup-container p a {
-  color: #00aaff;
-  text-decoration: none;
-  font-weight: 700;
-}
-
-.login-container p a:hover,
-.signup-container p a:hover {
-  text-decoration: underline;
 }
 
 footer {

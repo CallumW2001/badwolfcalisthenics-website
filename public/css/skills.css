@@ -1,16 +1,13 @@
 /* Base styles (keep as before) */
 
-main {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+section {
+  width: 100%;
+  max-width: 90%; /* limit max width */
+  margin: 0 auto; /* center section */
   padding: 2rem;
-  box-sizing: border-box;
-}
-
-main section {
-  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* Make the "Gallery" heading blue */

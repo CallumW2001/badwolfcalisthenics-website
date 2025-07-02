@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title><%= title %></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/css/styles.css" />
+
+    <!-- Firebase SDK scripts -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
+
+    <!-- Your Firebase config + header/mobile nav logic -->
+    <script src="/js/firebase-config.js" defer></script>
+    <script src="/js/app.js" defer></script>
+  </head>
+  <body>
+    <!-- Shared header -->
+    <%- include('partials/header') %>
+    <main>
+      <!-- Page-specific content -->
+      <%- body %>
+    </main>
+    <!-- Footer -->
+    <footer>
+      <p>&copy; 2025 Badwolf Calisthenics. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

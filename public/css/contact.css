@@ -1,34 +1,23 @@
-html,
-body {
-  height: 100%;
-  margin: 0;
-  background-color: #0a0a0a;
-  font-family: "Orbitron", sans-serif;
-  color: #e0e0e0;
-  overflow: hidden; /* prevent scroll */
-  display: flex;
-  flex-direction: column;
-}
-
-header.hero {
-  flex-shrink: 0;
-  background-color: #000;
-  border-bottom: 2px solid #1e1e1e;
-  padding: 1rem 2rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* Main fills the space between header and footer */
 main {
   flex: 1;
   display: flex;
-  justify-content: center; /* horizontal center */
-  align-items: center; /* vertical center */
-  padding: 1rem;
-  text-align: center;
-  overflow: hidden; /* no scroll inside main */
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  box-sizing: border-box;
+}
+
+/* Make sure messages are hidden by default */
+.success-message,
+.error-message {
+  display: none;
+  margin-top: 1em;
+}
+.success-message {
+  color: green;
+}
+.error-message {
+  color: red;
 }
 
 /* Contact container styling */

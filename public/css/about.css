@@ -1,6 +1,6 @@
 /* Use the sports font for the entire about-text section */
 .about-text h2 {
-  font-family: "Anton", sans-serif; /* sporty and bold */
+  font-family: "Oswald", sans-serif;
   color: #00aaff;
   font-size: 3rem;
   margin: 4rem auto 3rem auto;

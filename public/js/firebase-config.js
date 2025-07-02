@@ -17,34 +17,51 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-window.addEventListener("DOMContentLoaded", () => {
-  const userNameElem = document.getElementById("user-name");
-  const logoutBtn = document.getElementById("logout-btn");
-  const signInBtn = document.getElementById("sign-in-btn");
-  const signUpBtn = document.getElementById("sign-up-btn");
+// auth-handler.js
 
-  firebase.auth().onAuthStateChanged((user) => {
+// Make sure Firebase SDK scripts are loaded BEFORE this script
+
+window.addEventListener("DOMContentLoaded", () => {
+  // Get all relevant elements (desktop and mobile)
+  const userNameElem = document.getElementById("user-name");
+
+  const logoutBtnDesktop = document.getElementById("logout-btn");
+  const signInBtnDesktop = document.getElementById("sign-in-btn");
+  const signUpBtnDesktop = document.getElementById("sign-up-btn");
+
+  const logoutBtnMobile = document.getElementById("logout-btn-mobile");
+  const signInBtnMobile = document.getElementById("sign-in-btn-mobile");
+  const signUpBtnMobile = document.getElementById("sign-up-btn-mobile");
+
+  // Helper function to show/hide auth buttons consistently
+  function setAuthButtons(user) {
     if (user) {
-      // User logged in: show logout, hide sign-in and sign-up
       if (userNameElem) {
         userNameElem.textContent = `Welcome, ${user.displayName || user.email}`;
       }
-      if (logoutBtn) logoutBtn.style.display = "inline-block";
-      if (signInBtn) signInBtn.style.display = "none";
-      if (signUpBtn) signUpBtn.style.display = "none";
-    } else {
-      // No user logged in: show sign-in and sign-up, hide logout
-      if (userNameElem) {
-        userNameElem.textContent = "";
-      }
-      if (logoutBtn) logoutBtn.style.display = "none";
-      if (signInBtn) signInBtn.style.display = "inline-block";
-      if (signUpBtn) signUpBtn.style.display = "inline-block";
-    }
-  });
+      if (logoutBtnDesktop) logoutBtnDesktop.style.display = "inline-block";
+      if (signInBtnDesktop) signInBtnDesktop.style.display = "none";
+      if (signUpBtnDesktop) signUpBtnDesktop.style.display = "none";
 
-  if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
+      if (logoutBtnMobile) logoutBtnMobile.style.display = "inline-block";
+      if (signInBtnMobile) signInBtnMobile.style.display = "none";
+      if (signUpBtnMobile) signUpBtnMobile.style.display = "none";
+    } else {
+      if (userNameElem) userNameElem.textContent = "";
+
+      if (logoutBtnDesktop) logoutBtnDesktop.style.display = "none";
+      if (signInBtnDesktop) signInBtnDesktop.style.display = "inline-block";
+      if (signUpBtnDesktop) signUpBtnDesktop.style.display = "inline-block";
+
+      if (logoutBtnMobile) logoutBtnMobile.style.display = "none";
+      if (signInBtnMobile) signInBtnMobile.style.display = "inline-block";
+      if (signUpBtnMobile) signUpBtnMobile.style.display = "inline-block";
+    }
+  }
+
+  // Attach logout event listeners (both desktop and mobile)
+  if (logoutBtnDesktop) {
+    logoutBtnDesktop.addEventListener("click", () => {
       firebase
         .auth()
         .signOut()
@@ -53,24 +70,24 @@ window.addEventListener("DOMContentLoaded", () => {
         });
     });
   }
-});
-
-// Pseudocode example for Firebase auth state
-firebase.auth().onAuthStateChanged((user) => {
-  // First make all auth buttons visible
-  document.querySelectorAll(".nav-auth a").forEach((btn) => {
-    btn.style.visibility = "visible";
-  });
-
-  if (user) {
-    // User is signed in, show logout only
-    document.getElementById("logout-btn").style.display = "inline-block";
-    document.getElementById("sign-in-btn").style.display = "none";
-    document.getElementById("sign-up-btn").style.display = "none";
-  } else {
-    // User signed out, show login and sign-up only
-    document.getElementById("logout-btn").style.display = "none";
-    document.getElementById("sign-in-btn").style.display = "inline-block";
-    document.getElementById("sign-up-btn").style.display = "inline-block";
+  if (logoutBtnMobile) {
+    logoutBtnMobile.addEventListener("click", () => {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          window.location.href = "/";
+        });
+    });
   }
+
+  // Listen for auth state changes and update UI accordingly
+  firebase.auth().onAuthStateChanged((user) => {
+    // Make all auth buttons visible first (in case they were hidden by CSS)
+    document.querySelectorAll(".nav-auth a").forEach((btn) => {
+      btn.style.visibility = "visible";
+    });
+
+    setAuthButtons(user);
+  });
 });

@@ -1,67 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Reviews - Badwolf Calisthenics</title>
-    <link rel="stylesheet" href="css/styles.css" />
-    <link rel="stylesheet" href="css/reviews.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Oswald:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+<link rel="stylesheet" href="css/reviews.css" />
 
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
-
-    <!-- Firebase Config -->
-    <script src="js/firebase-config.js"></script>
-
-    <script src="js/app.js" defer></script>
-  </head>
-  <body>
-    <%- include('partials/header') %>
-
-    <main>
-      <div class="reviews-section">
-        <h2 class="section-title">What Our Clients Say</h2>
-        <div class="review-carousel">
-          <div class="review-track">
-            <!-- Review cards (set 1) -->
-            <div class="review-card">
-              <p>"Amazing results!"</p>
-              <strong>- Alex</strong>
-            </div>
-            <div class="review-card">
-              <p>"Top-tier coaching."</p>
-              <strong>- Jamie</strong>
-            </div>
-            <div class="review-card">
-              <p>"Highly recommend!"</p>
-              <strong>- Morgan</strong>
-            </div>
-
-            <!-- Review cards (set 2 - duplicates) -->
-            <div class="review-card">
-              <p>"Amazing results!"</p>
-              <strong>- Alex</strong>
-            </div>
-            <div class="review-card">
-              <p>"Top-tier coaching."</p>
-              <strong>- Jamie</strong>
-            </div>
-            <div class="review-card">
-              <p>"Highly recommend!"</p>
-              <strong>- Morgan</strong>
-            </div>
-          </div>
-        </div>
+<div class="reviews-section">
+  <h2 class="section-title">What Our Clients Say</h2>
+  <div class="review-carousel">
+    <div class="review-track">
+      <!-- Review cards (set 1) -->
+      <div class="review-card">
+        <p>"Amazing results!"</p>
+        <strong>- Alex</strong>
       </div>
-    </main>
+      <div class="review-card">
+        <p>"Top-tier coaching."</p>
+        <strong>- Jamie</strong>
+      </div>
+      <div class="review-card">
+        <p>"Highly recommend!"</p>
+        <strong>- Morgan</strong>
+      </div>
 
-    <footer>
-      <p>&copy; 2025 Badwolf Calisthenics. All rights reserved.</p>
-    </footer>
-  </body>
-</html>
+      <!-- Review cards (set 2 - duplicates) -->
+      <div class="review-card">
+        <p>"Amazing results!"</p>
+        <strong>- Alex</strong>
+      </div>
+      <div class="review-card">
+        <p>"Top-tier coaching."</p>
+        <strong>- Jamie</strong>
+      </div>
+      <div class="review-card">
+        <p>"Highly recommend!"</p>
+        <strong>- Morgan</strong>
+      </div>
+    </div>
+  </div>
+</div>
