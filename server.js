@@ -124,8 +124,8 @@ app.get("/your-training-plans", authenticateFirebaseToken, async (req, res) => {
         });
 
         return {
-          name: file.name.split("/").pop(), // just the filename, no path
-          url,
+          fileName: file.name.split("/").pop(), // just the filename, no path
+          fileUrl: url,
         };
       })
     );
@@ -137,6 +137,7 @@ app.get("/your-training-plans", authenticateFirebaseToken, async (req, res) => {
         "Personalized calisthenics training plans tailored just for you at Badwolf Calisthenics.",
       canonical: "https://www.badwolfcalisthenics.com/your-training-plans",
       plans,
+      userEmail: req.user.email,
     });
   } catch (error) {
     console.error("Error fetching training plans:", error);

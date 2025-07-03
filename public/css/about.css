@@ -1,6 +1,6 @@
 /* Use the sports font for the entire about-text section */
 .about-text h2 {
-  font-family: "Oswald", sans-serif;
+  font-family: "Orbitron", sans-serif;
   color: #00aaff;
   font-size: 3rem;
   margin: 4rem auto 3rem auto;
@@ -20,7 +20,7 @@
 }
 
 .about-text p {
-  font-family: "Oswald", sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-weight: 700;
   font-size: 1.4rem;
   line-height: 1.5;

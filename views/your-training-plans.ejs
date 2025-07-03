@@ -1,27 +1,43 @@
 <link rel="stylesheet" href="/css/your-training-plans.css" />
 
-<section class="your-training-plans-section">
-  <form
-    id="admin-upload-form"
-    enctype="multipart/form-data"
-    method="POST"
-    action="/admin/uploadTrainingPlan"
-  >
-    <input type="email" name="targetEmail" placeholder="User Email" required />
-    <input type="file" name="trainingPlan" accept=".doc,.docx" required />
-    <button type="submit">Upload Training Plan</button>
-  </form>
-  <h1 class="title">Your Training Plans</h1>
-  <p>Here you can view and manage your training plans.</p>
-  <ul>
-    <% if (plans.length === 0) { %>
-    <li>No training plans uploaded yet.</li>
-    <% } else { %> <% plans.forEach(plan => { %>
-    <li>
-      <a href="<%= plan.url %>" target="_blank" rel="noopener noreferrer">
-        <%= plan.name %>
-      </a>
-    </li>
-    <% }) %> <% } %>
-  </ul>
+<section class="training-plans-section">
+  <div class="training-plans-container">
+    <% const adminEmails = ["cwilkinson2017@outlook.com"]; %> <% if
+    (adminEmails.includes(userEmail)) { %>
+    <div class="upload-form">
+      <h2 class="main-title">Upload Training Plan</h2>
+      <form
+        action="/admin/uploadTrainingPlan"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <label for="targetEmail">User Email</label>
+        <input
+          type="email"
+          name="targetEmail"
+          required
+          placeholder="User email"
+        />
+
+        <label for="trainingPlan">Training Plan File</label>
+        <input type="file" name="trainingPlan" required />
+
+        <button type="submit">Upload</button>
+      </form>
+    </div>
+
+    <% } else { %>
+    <div class="user-plans">
+      <h2 class="main-title">Your Training Plans</h2>
+      <ul class="plan-list">
+        <% plans.forEach(plan => { %>
+        <li class="plan-card">
+          <span><%= plan.fileName %></span>
+          <a href="<%= plan.fileUrl %>" target="_blank" download>Download</a>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+    <% } %>
+  </div>
 </section>
