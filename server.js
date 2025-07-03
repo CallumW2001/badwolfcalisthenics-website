@@ -1,3 +1,16 @@
+const compression = require("compression");
+const express = require("express");
+const nodemailer = require("nodemailer");
+const expressLayouts = require("express-ejs-layouts");
+const path = require("path");
+const { title } = require("process");
+const cookieParser = require("cookie-parser");
+const multer = require("multer");
+const upload = multer({ storage: multer.memoryStorage() });
+const app = express();
+const admin = require("firebase-admin");
+const serviceAccount = require(path.join(__dirname, "serviceAccountKey.json"));
+
 app.get("/robots.txt", (req, res) => {
   res.type("text/plain");
   res.send(`User-agent: *
@@ -34,18 +47,6 @@ app.get("/sitemap.xml", (req, res) => {
   res.send(sitemap);
 });
 
-const compression = require("compression");
-const express = require("express");
-const nodemailer = require("nodemailer");
-const expressLayouts = require("express-ejs-layouts");
-const path = require("path");
-const { title } = require("process");
-const cookieParser = require("cookie-parser");
-const multer = require("multer");
-const upload = multer({ storage: multer.memoryStorage() });
-const app = express();
-const admin = require("firebase-admin");
-const serviceAccount = require(path.join(__dirname, "serviceAccountKey.json"));
 // Middleware to parse JSON and URL-encoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
