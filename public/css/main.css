@@ -99,6 +99,16 @@ main {
   fill: white;
 }
 
+.landing img {
+  animation: fadeInUp 2s ease-out;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 600px; /* limit max width */
+  height: auto; /* maintain aspect ratio */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
 /* Fade in up animation used only on landing */
 @keyframes fadeInUp {
   from {
@@ -140,13 +150,4 @@ main {
     height: 20px; /* allow height to adjust */
     line-height: normal; /* reset line-height for better text centering */
   }
-}
-
-.landing img {
-  width: 100%;
-  max-width: 600px; /* limit max width */
-  height: auto; /* maintain aspect ratio */
-  margin-top: 3rem;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }

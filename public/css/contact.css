@@ -18,6 +18,15 @@
   height: 100%;
 }
 
+.contact-row {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-around;
+}
+
 .contact-container {
   width: 75%; /* Let it be responsive */
   max-width: 600px; /* Cap on large screens */
@@ -106,6 +115,7 @@
   margin-top: 20px;
   font-weight: bold;
 }
+
 /* Fade-in keyframes */
 @keyframes fadeIn {
   to {

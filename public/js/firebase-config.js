@@ -19,6 +19,15 @@ firebase.initializeApp(firebaseConfig);
 
 // auth-handler.js
 
+firebase.auth().onAuthStateChanged(async (user) => {
+  if (user) {
+    const idToken = await user.getIdToken();
+    document.cookie = `token=${idToken}; path=/; secure; samesite=strict`;
+  } else {
+    document.cookie = "token=; Max-Age=0; path=/;"; // clear token on logout
+  }
+});
+
 // Make sure Firebase SDK scripts are loaded BEFORE this script
 
 window.addEventListener("DOMContentLoaded", () => {

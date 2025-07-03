@@ -58,10 +58,25 @@ document.addEventListener("DOMContentLoaded", () => {
         .createUserWithEmailAndPassword(email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          return user.updateProfile({ displayName: name });
+          return user.updateProfile({ displayName: name }).then(() => user);
         })
-        .then(() => {
-          window.location.href = "index.html";
+        .then((user) => {
+          // Call your server to create the user document
+          return fetch("/api/createUser", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              name: user.displayName,
+              email: user.email,
+            }),
+            credentials: "include", // send cookies including auth token
+          });
+        })
+        .then((response) => {
+          if (!response.ok) throw new Error("Failed to create user in DB");
+          window.location.href = "/";
         })
         .catch((error) => {
           if (signupError) signupError.textContent = error.message;

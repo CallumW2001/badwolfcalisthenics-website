@@ -88,17 +88,6 @@ main {
   }
 }
 
-@keyframes fadeInUp {
-  from {
-    transform: translateY(20px);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
-}
-
 /* Responsive tweaks */
 @media (max-width: 1000px) {
   .review-card {

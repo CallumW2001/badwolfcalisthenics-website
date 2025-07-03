@@ -5,9 +5,12 @@ const nodemailer = require("nodemailer");
 const expressLayouts = require("express-ejs-layouts");
 const path = require("path");
 const { title } = require("process");
-
+const cookieParser = require("cookie-parser");
+const multer = require("multer");
+const upload = multer({ storage: multer.memoryStorage() });
 const app = express();
-
+const admin = require("firebase-admin");
+const serviceAccount = require(path.join(__dirname, "serviceAccountKey.json"));
 // Middleware to parse JSON and URL-encoded form data
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -20,6 +23,7 @@ app.set("view engine", "ejs");
 app.use(expressLayouts);
 app.set("views", path.join(__dirname, "views"));
 app.use(compression());
+app.use(cookieParser());
 
 app.use((req, res, next) => {
   const host = req.headers.host;
@@ -34,6 +38,31 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.set("layout", "layout"); // Default layout file: views/layout.ejs
 
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  storageBucket: "badwolfcalisthenics-77163.firebasestorage.app",
+});
+
+const db = admin.firestore();
+
+async function authenticateFirebaseToken(req, res, next) {
+  const token = req.cookies.token;
+  console.log("Token from cookie:", token);
+  if (!token) {
+    console.log("No token, redirecting");
+    return res.redirect("/login");
+  }
+  try {
+    const decodedToken = await admin.auth().verifyIdToken(token);
+    console.log("Decoded token:", decodedToken);
+    req.user = decodedToken;
+    next();
+  } catch (err) {
+    console.error("Token verification failed:", err);
+    return res.redirect("/login");
+  }
+}
+
 app.get("/", (req, res) => {
   res.render("index", {
     currentPage: "home",
@@ -41,6 +70,7 @@ app.get("/", (req, res) => {
     description:
       "Official site of Badwolf Calisthenics — Calisthenics training, skills, and plans.",
     canonical: "https://www.badwolfcalisthenics.com/",
+    query: req.query,
   });
 });
 
@@ -74,14 +104,44 @@ app.get("/reviews", (req, res) => {
   });
 });
 
-app.get("/your-training-plans", (req, res) => {
-  res.render("your-training-plans", {
-    currentPage: "your-training-plans",
-    title: "Your Training Plans - Badwolf Calisthenics",
-    description:
-      "Personalized calisthenics training plans tailored just for you at Badwolf Calisthenics.",
-    canonical: "https://www.badwolfcalisthenics.com/your-training-plans",
-  });
+app.get("/your-training-plans", authenticateFirebaseToken, async (req, res) => {
+  const userId = req.user.uid;
+  const bucket = admin.storage().bucket();
+
+  try {
+    // List files inside the user's folder
+    const [files] = await bucket.getFiles({
+      prefix: `trainingPlans/${userId}/`,
+    });
+
+    // Map files to objects with file name and signed URL for access
+    const plans = await Promise.all(
+      files.map(async (file) => {
+        // Get a signed URL valid for, say, 1 hour (adjust as needed)
+        const [url] = await file.getSignedUrl({
+          action: "read",
+          expires: Date.now() + 60 * 60 * 1000, // 1 hour from now
+        });
+
+        return {
+          name: file.name.split("/").pop(), // just the filename, no path
+          url,
+        };
+      })
+    );
+
+    res.render("your-training-plans", {
+      currentPage: "your-training-plans",
+      title: "Your Training Plans - Badwolf Calisthenics",
+      description:
+        "Personalized calisthenics training plans tailored just for you at Badwolf Calisthenics.",
+      canonical: "https://www.badwolfcalisthenics.com/your-training-plans",
+      plans,
+    });
+  } catch (error) {
+    console.error("Error fetching training plans:", error);
+    res.status(500).send("Failed to load your training plans");
+  }
 });
 
 app.get("/contact", (req, res) => {
@@ -114,6 +174,25 @@ app.get("/signup", (req, res) => {
       "Create your Badwolf Calisthenics account and start your calisthenics journey today.",
     canonical: "https://www.badwolfcalisthenics.com/signup",
   });
+});
+
+app.post("/api/createUser", authenticateFirebaseToken, async (req, res) => {
+  try {
+    const userId = req.user.uid;
+    const { name, email } = req.body;
+
+    await db.collection("users").doc(userId).set({
+      name,
+      email,
+      createdAt: admin.firestore.FieldValue.serverTimestamp(),
+      // any other fields you want
+    });
+
+    res.status(200).json({ message: "User created successfully" });
+  } catch (error) {
+    console.error("Error creating user document:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 // POST route to handle contact form submissions
@@ -152,6 +231,63 @@ app.post("/contact", async (req, res) => {
     res.status(500).json({ success: false, error: "Failed to send message." });
   }
 });
+
+app.post(
+  "/admin/uploadTrainingPlan",
+  authenticateFirebaseToken,
+  upload.single("trainingPlan"),
+  async (req, res) => {
+    if (!req.user || !req.user.email)
+      return res.status(401).send("Unauthorized");
+
+    const adminEmails = ["cwilkinson2017@outlook.com"];
+    if (!adminEmails.includes(req.user.email))
+      return res.status(403).send("Forbidden");
+
+    try {
+      const targetEmail = req.body.targetEmail;
+      const file = req.file;
+      if (!targetEmail || !file) {
+        return res.status(400).send("Missing email or file");
+      }
+
+      const usersRef = db.collection("users");
+      const snapshot = await usersRef.where("email", "==", targetEmail).get();
+      if (snapshot.empty) {
+        return res.status(404).send("User not found");
+      }
+      const userDoc = snapshot.docs[0];
+      const userId = userDoc.id;
+
+      const bucket = admin.storage().bucket();
+      const fileName = `trainingPlans/${userId}/${Date.now()}_${
+        file.originalname
+      }`;
+      const fileUpload = bucket.file(fileName);
+      await fileUpload.save(file.buffer, {
+        metadata: { contentType: file.mimetype },
+      });
+
+      const [url] = await fileUpload.getSignedUrl({
+        action: "read",
+        expires: "03-01-2500",
+      });
+
+      await db.collection("users").doc(userId).collection("trainingPlans").add({
+        fileName: file.originalname,
+        fileUrl: url,
+        uploadedAt: admin.firestore.FieldValue.serverTimestamp(),
+        uploadedBy: req.user.email,
+      });
+
+      //res.status(200).json({ message: "Training plan uploaded successfully" });
+      res.redirect("/?uploadSuccess=true");
+    } catch (error) {
+      console.error("Admin upload error:", error);
+      res.status(500).json({ error: "Internal Server Error" });
+    }
+  }
+);
 
 app.get("/robots.txt", (req, res) => {
   res.type("text/plain");

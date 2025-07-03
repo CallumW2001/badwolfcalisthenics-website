@@ -1,0 +1,10 @@
+.title {
+  color: #00aaff;
+}
+
+.your-training-plans-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

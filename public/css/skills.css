@@ -52,17 +52,6 @@ main section > h2 {
   /* will set --img-index in JS */
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 @media (max-width: 768px) {
   .gallery-grid {
     grid-template-columns: repeat(1, 1fr); /* 2 columns on small screens */
@@ -72,5 +61,14 @@ main section > h2 {
   main section > h2 {
     font-size: 2rem; /* smaller heading */
     text-align: center; /* center on small screens */
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

@@ -1,0 +1,27 @@
+<link rel="stylesheet" href="/css/your-training-plans.css" />
+
+<section class="your-training-plans-section">
+  <form
+    id="admin-upload-form"
+    enctype="multipart/form-data"
+    method="POST"
+    action="/admin/uploadTrainingPlan"
+  >
+    <input type="email" name="targetEmail" placeholder="User Email" required />
+    <input type="file" name="trainingPlan" accept=".doc,.docx" required />
+    <button type="submit">Upload Training Plan</button>
+  </form>
+  <h1 class="title">Your Training Plans</h1>
+  <p>Here you can view and manage your training plans.</p>
+  <ul>
+    <% if (plans.length === 0) { %>
+    <li>No training plans uploaded yet.</li>
+    <% } else { %> <% plans.forEach(plan => { %>
+    <li>
+      <a href="<%= plan.url %>" target="_blank" rel="noopener noreferrer">
+        <%= plan.name %>
+      </a>
+    </li>
+    <% }) %> <% } %>
+  </ul>
+</section>
