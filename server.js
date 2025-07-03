@@ -1,5 +1,40 @@
-const compression = require("compression");
+app.get("/robots.txt", (req, res) => {
+  res.type("text/plain");
+  res.send(`User-agent: *
+Disallow: /login
+Disallow: /signup
+Allow: /`);
+});
 
+app.get("/sitemap.xml", (req, res) => {
+  res.type("application/xml");
+
+  const urls = [
+    { url: "", priority: 1.0 },
+    { url: "about", priority: 0.8 },
+    { url: "skills", priority: 0.8 },
+    { url: "reviews", priority: 0.7 },
+    { url: "your-training-plans", priority: 0.7 },
+    { url: "contact", priority: 0.6 },
+  ];
+
+  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>`;
+  sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
+
+  urls.forEach(({ url, priority }) => {
+    sitemap += `
+    <url>
+      <loc>https://www.badwolfcalisthenics.com/${url}</loc>
+      <changefreq>weekly</changefreq>
+      <priority>${priority}</priority>
+    </url>`;
+  });
+
+  sitemap += `</urlset>`;
+  res.send(sitemap);
+});
+
+const compression = require("compression");
 const express = require("express");
 const nodemailer = require("nodemailer");
 const expressLayouts = require("express-ejs-layouts");
@@ -289,42 +324,6 @@ app.post(
     }
   }
 );
-
-app.get("/robots.txt", (req, res) => {
-  res.type("text/plain");
-  res.send(`User-agent: *
-Disallow: /login
-Disallow: /signup
-Allow: /`);
-});
-
-app.get("/sitemap.xml", (req, res) => {
-  res.type("application/xml");
-
-  const urls = [
-    { url: "", priority: 1.0 },
-    { url: "about", priority: 0.8 },
-    { url: "skills", priority: 0.8 },
-    { url: "reviews", priority: 0.7 },
-    { url: "your-training-plans", priority: 0.7 },
-    { url: "contact", priority: 0.6 },
-  ];
-
-  let sitemap = `<?xml version="1.0" encoding="UTF-8"?>`;
-  sitemap += `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">`;
-
-  urls.forEach(({ url, priority }) => {
-    sitemap += `
-    <url>
-      <loc>https://www.badwolfcalisthenics.com/${url}</loc>
-      <changefreq>weekly</changefreq>
-      <priority>${priority}</priority>
-    </url>`;
-  });
-
-  sitemap += `</urlset>`;
-  res.send(sitemap);
-});
 
 //Start Server
 const PORT = process.env.PORT || 3000;
