@@ -11,6 +11,10 @@
   height: 100%;
 }
 
+.hero-heading {
+  min-height: 4.5rem; /* Adjust to the expected height of your heading */
+}
+
 main {
   flex: 1; /* take all available space between header and footer */
   padding: 2rem 1rem;
