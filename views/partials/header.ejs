@@ -58,11 +58,13 @@
     height: 100%;
   }
 
+  /* Critical: Active and hover nav link color */
   .navbar-desktop a:hover,
   .navbar-desktop a.active {
     color: #00aaff;
   }
 
+  /* Critical: Button style for nav */
   .navbar-desktop a.button {
     background-color: #00aaff;
     color: #000;
@@ -70,16 +72,20 @@
     border-radius: 5px;
     font-weight: bold;
     cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s;
   }
 
   .navbar-desktop a.button:hover {
     background-color: #008fcc;
   }
 
+  /* Hide mobile menu toggle by default */
   .menu-toggle {
     display: none;
   }
 
+  /* Show toggle on small screens */
   @media (max-width: 768px) {
     .navbar-desktop {
       display: none;
