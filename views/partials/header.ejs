@@ -1,28 +1,5 @@
-<link rel="stylesheet" href="css/nav.css" />
-
-<meta property="og:title" content="Badwolf Calisthenics" />
-<meta
-  property="og:description"
-  content="Calisthenics training, skills, and plans."
-/>
-<meta
-  property="og:image"
-  content="https://www.badwolfcalisthenics.com/images/badwolf_calisthenics_logo-removebg-preview.png"
-/>
-<meta property="og:url" content="https://www.badwolfcalisthenics.com/" />
-<meta property="og:type" content="website" />
-
-<!-- Twitter Card (optional but recommended) -->
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Badwolf Calisthenics" />
-<meta
-  name="twitter:description"
-  content="Calisthenics training, skills, and plans."
-/>
-<meta
-  name="twitter:image"
-  content="https://www.badwolfcalisthenics.com/images/badwolf_calisthenics_logo-removebg-preview.png"
-/>
+<link rel="stylesheet" href="/css/styles.css" />
+<link rel="stylesheet" href="/css/nav.css" />
 
 <header class="hero">
   <div class="logo">
@@ -30,9 +7,9 @@
       src="images/badwolf_calisthenics_logo-removebg-preview.png"
       alt="Badwolf Calisthenics Logo"
     />
-    <a href="/" class="title <%= currentPage === 'home' ? 'active' : '' %>"
-      >Badwolf Calisthenics</a
-    >
+    <a href="/" class="title <%= currentPage === 'home' ? 'active' : '' %>">
+      Badwolf Calisthenics
+    </a>
   </div>
 
   <!-- Menu toggle button for small screens -->
@@ -91,7 +68,6 @@
   <!-- Mobile fullscreen overlay -->
   <nav class="navbar-overlay">
     <ul>
-      <!-- Copy same nav links for mobile -->
       <li id="training-plans-tab-mobile" style="display: none">
         <a
           href="your-training-plans"
@@ -164,34 +140,16 @@
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
-        // Show "Your Training Plans"
         if (trainingPlansTab) trainingPlansTab.style.display = "inline-block";
         if (trainingPlansTabMobile)
           trainingPlansTabMobile.style.display = "inline-block";
-
         // Other UI updates...
       } else {
-        // Hide "Your Training Plans"
         if (trainingPlansTab) trainingPlansTab.style.display = "none";
         if (trainingPlansTabMobile)
           trainingPlansTabMobile.style.display = "none";
-
         // Other UI updates...
       }
     });
   });
-</script>
-
-<script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    "name": "Badwolf Calisthenics",
-    "url": "https://www.badwolfcalisthenics.com",
-    "logo": "https://www.badwolfcalisthenics.com/images/badwolf_calisthenics_logo-removebg-preview.png",
-    "sameAs": [
-      "https://www.instagram.com/badwolfcalisthenics/",
-      "https://www.youtube.com/yourchannel"
-    ]
-  }
 </script>

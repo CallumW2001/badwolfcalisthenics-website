@@ -1,11 +1,11 @@
-<link rel="stylesheet" href="css/layout.css" />
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title><%= title %></title>
+    <title><%= title %> | Badwolf Calisthenics</title>
     <meta name="description" content="<%= description || '' %>" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
     <link
       rel="canonical"
       href="<%= canonical || 'https://www.badwolfcalisthenics.com' %>"
@@ -14,6 +14,10 @@
     <!-- Open Graph -->
     <meta property="og:title" content="<%= title %>" />
     <meta property="og:description" content="<%= description || '' %>" />
+    <meta
+      property="og:image"
+      content="https://www.badwolfcalisthenics.com/images/badwolf_calisthenics_logo-removebg-preview.png"
+    />
     <meta
       property="og:url"
       content="<%= canonical || 'https://www.badwolfcalisthenics.com' %>"
@@ -25,16 +29,17 @@
     <meta name="twitter:title" content="<%= title %>" />
     <meta name="twitter:description" content="<%= description || '' %>" />
     <meta
-      name="twitter:url"
-      content="<%= canonical || 'https://www.badwolfcalisthenics.com' %>"
-    />
-    <meta
       name="twitter:image"
       content="https://www.badwolfcalisthenics.com/images/badwolf_calisthenics_logo-removebg-preview.png"
+    />
+    <meta
+      name="twitter:url"
+      content="<%= canonical || 'https://www.badwolfcalisthenics.com' %>"
     />
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="/css/styles.css" />
+    <link rel="stylesheet" href="/css/layout.css" />
 
     <!-- Firebase SDK scripts -->
     <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
@@ -43,14 +48,31 @@
     <!-- Your Firebase config + header/mobile nav logic -->
     <script src="/js/firebase-config.js" defer></script>
     <script src="/js/app.js" defer></script>
+
+    <!-- JSON-LD structured data for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Badwolf Calisthenics",
+        "url": "https://www.badwolfcalisthenics.com",
+        "logo": "https://www.badwolfcalisthenics.com/images/badwolf_calisthenics_logo-removebg-preview.png",
+        "sameAs": [
+          "https://www.instagram.com/badwolfcalisthenics/",
+          "https://www.youtube.com/yourchannel"
+        ]
+      }
+    </script>
   </head>
   <body>
     <!-- Shared header -->
     <%- include('partials/header') %>
+
     <main>
       <!-- Page-specific content -->
       <%- body %>
     </main>
+
     <!-- Footer -->
     <footer>
       <section class="footer-row">
