@@ -1,3 +1,102 @@
+<style>
+  body {
+    margin: 0;
+    font-family: "Orbitron", sans-serif;
+    background-color: #000;
+  }
+
+  header.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #000;
+    border-bottom: 2px solid #1e1e1e;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+  }
+
+  .logo img {
+    height: 50px;
+    margin-right: 1rem;
+  }
+
+  .title {
+    font-family: "Orbitron", sans-serif;
+    font-size: 1.5rem;
+    color: #00aaff;
+    margin: 0;
+    font-weight: bold;
+    text-decoration: none;
+  }
+
+  .navbar-desktop {
+    display: flex;
+  }
+
+  .navbar-desktop ul {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+  }
+
+  .navbar-desktop a {
+    text-decoration: none;
+    font-family: "Orbitron", sans-serif;
+    color: #ccc;
+    font-weight: bold;
+    transition: color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .navbar-desktop a:hover,
+  .navbar-desktop a.active {
+    color: #00aaff;
+  }
+
+  .navbar-desktop a.button {
+    background-color: #00aaff;
+    color: #000;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .navbar-desktop a.button:hover {
+    background-color: #008fcc;
+  }
+
+  .menu-toggle {
+    display: none;
+  }
+
+  @media (max-width: 768px) {
+    .navbar-desktop {
+      display: none;
+    }
+
+    .menu-toggle {
+      display: block;
+      font-size: 2rem;
+      color: #00aaff;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 2001;
+    }
+  }
+</style>
+
 <link
   rel="preload"
   href="https://fonts.gstatic.com/s/orbitron/v34/yMJRMIlzdpvBhQQL_Qq7dy0.woff2"

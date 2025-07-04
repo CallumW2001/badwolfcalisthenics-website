@@ -1,7 +1,5 @@
 /* Base and common styles for the whole site */
 
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap");
-
 body {
   display: flex;
   flex-direction: column;
