@@ -1,0 +1,50 @@
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+
+  a {
+    color: #00aaff;
+    text-decoration: none;
+  }
+  article.blog-post {
+    width: 75%;
+    background-color: #111;
+    margin-bottom: 5rem;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
+    animation: fadeInUp 0.6s ease both;
+  }
+
+  .post-content
+  {
+    margin-bottom: 5rem;
+  }
+</style>
+
+<article class="blog-post">
+  <h1><%= post.title %></h1>
+
+  <% if (post.publishedAt) { %>
+  <p class="post-date">
+    <%= new Date(post.publishedAt._seconds * 1000).toLocaleDateString() %>
+  </p>
+  <% } %> <% if (post.author) { %>
+  <p class="post-author">By <%= post.author %></p>
+  <% } %>
+
+  <div class="post-content">
+    <% /* If your content is HTML stored as string, use unescaped output: */ %>
+    <%- post.content %>
+  </div>
+  <a href="/blog" class="back-link">← Back to Blog</a>
+</article>
+
+

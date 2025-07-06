@@ -144,14 +144,7 @@ body {
   font-family: "Orbitron", sans-serif;
 }
 
-footer {
-  text-align: center;
-  padding: 2rem;
-  background-color: #111;
-  color: #666;
-  font-size: 0.9rem;
-  /* no position fixed or sticky here */
-}
+
 
 @keyframes fadeInUp {
   from {

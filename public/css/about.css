@@ -13,7 +13,7 @@
 
 /* About text container */
 .about-text {
-  max-width: 900px; /* wider container */
+  max-width: 75%; /* wider container */
   margin: 3rem auto 5rem auto;
   padding: 0 1.5rem; /* some side padding */
   text-align: left; /* left align the whole block */
@@ -121,4 +121,11 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@media (max-width: 768px)
+{
+.about-text p{
+  font-size: small;
+}
 }

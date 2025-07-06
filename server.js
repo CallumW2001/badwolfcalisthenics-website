@@ -8,8 +8,12 @@ const cookieParser = require("cookie-parser");
 const multer = require("multer");
 const upload = multer({ storage: multer.memoryStorage() });
 const app = express();
-const admin = require("firebase-admin");
 const serviceAccount = require(path.join(__dirname, "serviceAccountKey.json"));
+const blogRoutes = require("./routes/blog");
+const adminBlogRoutes = require("./routes/adminRoutes");
+const router = express.Router();
+const admin = require("./routes/firebaseAdmin");
+const authenticateFirebaseToken = require("./middleware/authenticate-firebase");
 
 app.get("/robots.txt", (req, res) => {
   res.type("text/plain");
@@ -44,6 +48,7 @@ app.get("/sitemap.xml", (req, res) => {
   });
 
   sitemap += `</urlset>`;
+  const blogRoutes = require("./routes/blog");
   res.send(sitemap);
 });
 
@@ -60,7 +65,8 @@ app.use(expressLayouts);
 app.set("views", path.join(__dirname, "views"));
 app.use(compression());
 app.use(cookieParser());
-
+app.use("/blog", blogRoutes); // Mount at root
+app.use("/admin", adminBlogRoutes);
 app.use((req, res, next) => {
   const host = req.headers.host;
   if (host.includes(".elasticbeanstalk.com")) {
@@ -74,30 +80,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.set("layout", "layout"); // Default layout file: views/layout.ejs
 
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  storageBucket: "badwolfcalisthenics-77163.firebasestorage.app",
-});
-
 const db = admin.firestore();
-
-async function authenticateFirebaseToken(req, res, next) {
-  const token = req.cookies.token;
-  console.log("Token from cookie:", token);
-  if (!token) {
-    console.log("No token, redirecting");
-    return res.redirect("/login");
-  }
-  try {
-    const decodedToken = await admin.auth().verifyIdToken(token);
-    console.log("Decoded token:", decodedToken);
-    req.user = decodedToken;
-    next();
-  } catch (err) {
-    console.error("Token verification failed:", err);
-    return res.redirect("/login");
-  }
-}
 
 app.get("/", (req, res) => {
   res.render("index", {
