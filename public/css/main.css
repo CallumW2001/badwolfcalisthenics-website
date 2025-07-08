@@ -134,9 +134,11 @@ main {
   }
 
   .cta-button {
+    display: flex;
     width: 100%;
     padding: 0.75rem;
-    font-size: 1.2rem;
+    justify-content: center;
+    align-items: center;
   }
 
   .instagram-link {
@@ -147,10 +149,5 @@ main {
   .instagram-link svg {
     height: 20px; /* scale down */
     width: 40px;
-  }
-
-  .cta-button {
-    height: 20px; /* allow height to adjust */
-    line-height: normal; /* reset line-height for better text centering */
   }
 }
