@@ -50,7 +50,7 @@ router.get("/exercises", async (req, res) => {
 });
 
 // GET: Submission form
-router.get("/submit", async (req, res) => {
+router.get("/submit", authenticateFirebaseToken, async (req, res) => {
   try {
     const snapshot = await db.collection("competitionExercises").get();
     const exercises = snapshot.docs.map((doc) => ({
