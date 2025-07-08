@@ -11,6 +11,7 @@ const app = express();
 const serviceAccount = require(path.join(__dirname, "serviceAccountKey.json"));
 const blogRoutes = require("./routes/blog");
 const adminBlogRoutes = require("./routes/adminRoutes");
+const competition = require("./routes/competitionRoutes");
 const router = express.Router();
 const admin = require("./routes/firebaseAdmin");
 const authenticateFirebaseToken = require("./middleware/authenticate-firebase");
@@ -54,7 +55,7 @@ app.get("/sitemap.xml", (req, res) => {
 
 // Middleware to parse JSON and URL-encoded form data
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use((req, res, next) => {
   res.locals.canonical = `https://www.badwolfcalisthenics.com${req.originalUrl}`;
   next();
@@ -67,6 +68,7 @@ app.use(compression());
 app.use(cookieParser());
 app.use("/blog", blogRoutes); // Mount at root
 app.use("/admin", adminBlogRoutes);
+app.use("/competition", competition);
 app.use((req, res, next) => {
   const host = req.headers.host;
   if (host.includes(".elasticbeanstalk.com")) {

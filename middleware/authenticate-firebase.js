@@ -1,5 +1,3 @@
-// middleware/authenticate-firebase.js
-
 const admin = require("../routes/firebaseAdmin");
 
 async function authenticateFirebaseToken(req, res, next) {
@@ -12,7 +10,16 @@ async function authenticateFirebaseToken(req, res, next) {
 
   try {
     const decodedToken = await admin.auth().verifyIdToken(idToken);
-    req.user = decodedToken;
+
+    // Fetch full user record from Firebase
+    const userRecord = await admin.auth().getUser(decodedToken.uid);
+
+    req.user = {
+      user_id: decodedToken.uid,
+      email: decodedToken.email,
+      displayName: userRecord.displayName || "", // safe fallback
+    };
+
     next();
   } catch (error) {
     console.error("Auth error:", error);

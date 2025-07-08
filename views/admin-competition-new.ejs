@@ -1,0 +1,46 @@
+<h1>Add New Competition Exercise</h1>
+<form method="POST" action="/admin/competition/new">
+  <label for="id">Unique ID (e.g. "push-ups")</label>
+  <input type="text" name="id" required />
+
+  <label for="name">Name</label>
+  <input type="text" name="name" required />
+
+  <label for="description">Description</label>
+  <textarea name="description" required></textarea>
+
+  <label for="maxPoints">Max Points</label>
+  <input type="number" name="maxPoints" required />
+
+  <button type="submit">Add Exercise</button>
+</form>
+
+<style>
+  input,
+  textarea {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+  }
+
+  form {
+    width: 75%;
+    max-width: 700px;
+  }
+
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  button {
+    padding: 0.6rem 1rem;
+    background: #00aaff;
+    border: none;
+    border-radius: 6px;
+    color: black;
+    font-weight: bold;
+    font-family: "Orbitron", sans-serif;
+  }
+</style>

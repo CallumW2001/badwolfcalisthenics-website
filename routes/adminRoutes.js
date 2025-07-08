@@ -6,7 +6,10 @@ const db = admin.firestore();
 
 // Middleware to check if user is admin
 function checkAdmin(req, res, next) {
-  const adminEmails = ["cwilkinson2017@outlook.com", "badwolfcalisthenics@gmail.com"];
+  const adminEmails = [
+    "cwilkinson2017@outlook.com",
+    "badwolfcalisthenics@gmail.com",
+  ];
   if (!req.user || !adminEmails.includes(req.user.email)) {
     return res.status(403).send("Forbidden");
   }
@@ -83,10 +86,13 @@ router.get(
     try {
       const doc = await db.collection("posts").doc(req.params.slug).get();
       if (!doc.exists) return res.status(404).send("Post not found");
-      res.render("admin-post-edit", { post: { slug: doc.id, ...doc.data() }, currentPage: "blog",
-      title: "Edit Post - Badwolf Calisthenics",
-      description: `Edit blog post - ${req.params.slug}`,
-      canonical: `https://www.badwolfcalisthenics.com/admin/blog/edit/${req.params.slug}`, });
+      res.render("admin-post-edit", {
+        post: { slug: doc.id, ...doc.data() },
+        currentPage: "blog",
+        title: "Edit Post - Badwolf Calisthenics",
+        description: `Edit blog post - ${req.params.slug}`,
+        canonical: `https://www.badwolfcalisthenics.com/admin/blog/edit/${req.params.slug}`,
+      });
     } catch (error) {
       console.error(error);
       res.status(500).send("Server error");
@@ -129,6 +135,68 @@ router.post(
       console.error(error);
       res.status(500).send("Server error");
     }
+  }
+);
+
+router.get(
+  "/competition",
+  authenticateFirebaseToken,
+  checkAdmin,
+  async (req, res) => {
+    const snapshot = await db.collection("competitionExercises").get();
+    const exercises = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    res.render("admin-competition", {
+      exercises,
+      currentPage: "admin",
+      title: "Admin Portal - Badwolf Calisthenics",
+      description: "Admin Activities",
+      canonical: "https://www.badwolfcalisthenics.com/admin/competition",
+    });
+  }
+);
+
+router.get(
+  "/competition/new",
+  authenticateFirebaseToken,
+  checkAdmin,
+  (req, res) => {
+    res.render("admin-competition-new", {
+      currentPage: "admin",
+      title: "Create Exercises - Badwolf Calisthenics",
+      description: "Create a new exercises for competition",
+      canonical: "https://www.badwolfcalisthenics.com/admin/competition/new",
+    });
+  }
+);
+
+router.post(
+  "/competition/new",
+  authenticateFirebaseToken,
+  checkAdmin,
+  async (req, res) => {
+    const { id, name, description, maxPoints } = req.body;
+    await db
+      .collection("competitionExercises")
+      .doc(id)
+      .set({
+        name,
+        description,
+        maxPoints: Number(maxPoints),
+      });
+    res.redirect("/admin/competition");
+  }
+);
+
+router.post(
+  "/competition/delete/:id",
+  authenticateFirebaseToken,
+  checkAdmin,
+  async (req, res) => {
+    await db.collection("competitionExercises").doc(req.params.id).delete();
+    res.redirect("/admin/competition");
   }
 );
 

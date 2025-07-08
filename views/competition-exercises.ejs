@@ -1,0 +1,19 @@
+<h1>Exercises & Scoring</h1>
+<ul>
+  <% exercises.forEach(ex => { %>
+  <li>
+    <%= ex.name %> - <%= ex.description %> <% if (ex.maxPoints) { %> (Max
+    Points: <%= ex.maxPoints %>) <% } %>
+  </li>
+  <% }) %>
+</ul>
+
+<style>
+  main {
+    display: flex;
+    align-items: center;
+  }
+  li {
+    list-style: none;
+  }
+</style>

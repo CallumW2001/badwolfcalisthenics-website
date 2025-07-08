@@ -45,7 +45,6 @@
     display: flex;
     gap: 1rem;
     margin: 0;
-    padding: 0;
     align-items: center;
   }
 
@@ -127,7 +126,6 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding: 0;
     margin: 0;
     align-items: center;
   }
@@ -161,7 +159,7 @@
     display: flex;
   }
 
-  .navbar-desktop ul {
+  .navbar-desktop {
     list-style: none;
     display: flex;
     gap: 1rem;
@@ -192,7 +190,6 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding: 0;
     margin: 0;
     margin-left: auto;
     margin-right: auto;
@@ -285,7 +282,6 @@
 
 <noscript>
   <link rel="stylesheet" href="/css/styles.css" />
-  <link rel="stylesheet" href="/css/nav.css" />
 </noscript>
 
 <!-- Preconnect early -->
@@ -317,9 +313,16 @@
   <!-- Regular nav bar (desktop) -->
   <nav class="navbar-desktop">
     <ul>
+      <li>
+        <a
+          href="/competition"
+          class="<%= currentPage === 'competition' ? 'active' : '' %>"
+          >Competition</a
+        >
+      </li>
       <li id="training-plans-tab" style="display: none">
         <a
-          href="your-training-plans"
+          href="/your-training-plans"
           class="<%= currentPage === 'your-training-plans' ? 'active' : '' %>"
         >
           Your Training Plans
@@ -331,25 +334,27 @@
         >
       </li>
       <li>
-        <a href="about" class="<%= currentPage === 'about' ? 'active' : '' %>"
+        <a href="/about" class="<%= currentPage === 'about' ? 'active' : '' %>"
           >About</a
         >
       </li>
       <li>
         <a
-          href="reviews"
+          href="/reviews"
           class="<%= currentPage === 'reviews' ? 'active' : '' %>"
           >Reviews</a
         >
       </li>
       <li>
-        <a href="skills" class="<%= currentPage === 'skills' ? 'active' : '' %>"
+        <a
+          href="/skills"
+          class="<%= currentPage === 'skills' ? 'active' : '' %>"
           >Skills</a
         >
       </li>
       <li>
         <a
-          href="contact"
+          href="/contact"
           class="<%= currentPage === 'contact' ? 'active' : '' %>"
           >Contact</a
         >
@@ -372,9 +377,16 @@
   <!-- Mobile fullscreen overlay -->
   <nav class="navbar-overlay">
     <ul>
+      <li>
+        <a
+          href="/competition"
+          class="<% currentPage === 'competition' ? 'active' : '' %>"
+          >Competition</a
+        >
+      </li>
       <li id="training-plans-tab-mobile" style="display: none">
         <a
-          href="your-training-plans"
+          href="/your-training-plans"
           class="<%= currentPage === 'your-training-plans' ? 'active' : '' %>"
         >
           Your Training Plans
@@ -386,25 +398,27 @@
         >
       </li>
       <li>
-        <a href="about" class="<%= currentPage === 'about' ? 'active' : '' %>"
+        <a href="/about" class="<%= currentPage === 'about' ? 'active' : '' %>"
           >About</a
         >
       </li>
       <li>
         <a
-          href="reviews"
+          href="/reviews"
           class="<%= currentPage === 'reviews' ? 'active' : '' %>"
           >Reviews</a
         >
       </li>
       <li>
-        <a href="skills" class="<%= currentPage === 'skills' ? 'active' : '' %>"
+        <a
+          href="/skills"
+          class="<%= currentPage === 'skills' ? 'active' : '' %>"
           >Skills</a
         >
       </li>
       <li>
         <a
-          href="contact"
+          href="/contact"
           class="<%= currentPage === 'contact' ? 'active' : '' %>"
           >Contact</a
         >
@@ -415,8 +429,8 @@
         >
       </li>
       <li class="nav-auth">
-        <a href="login" id="sign-in-btn-mobile" class="button">Login</a>
-        <a href="signup" id="sign-up-btn-mobile" class="button">Sign Up</a>
+        <a href="/login" id="sign-in-btn-mobile" class="button">Login</a>
+        <a href="/signup" id="sign-up-btn-mobile" class="button">Sign Up</a>
         <a href="/" id="logout-btn-mobile" class="button" style="display: none"
           >Logout</a
         >
