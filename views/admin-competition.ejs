@@ -8,7 +8,7 @@
     ex.maxPoints %> pts
     <form
       method="POST"
-      action="/admin/competition/delete<%= ex.id %>"
+      action="/admin/competition/delete/<%= ex.id %>"
       style="display: inline"
     >
       <button onclick="return confirm('Delete this exercise?')">Delete</button>

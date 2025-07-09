@@ -16,3 +16,8 @@ main {
     text-decoration: none;
   }
 }
+
+h2 > a {
+  color: #00aaff;
+  text-decoration: none;
+}
