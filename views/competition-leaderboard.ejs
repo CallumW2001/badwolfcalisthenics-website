@@ -6,6 +6,7 @@
 <table>
   <thead>
     <tr>
+      <th>Rank</th>
       <th>Participant</th>
       <th>Total Points</th>
     </tr>
@@ -13,6 +14,7 @@
   <tbody>
     <% leaderboard.forEach(entry => { %>
     <tr>
+      <td><%= entry.rank %></td>
       <td><%= entry.displayName %></td>
       <td><%= entry.total %></td>
     </tr>

@@ -15,9 +15,9 @@ async function authenticateFirebaseToken(req, res, next) {
     const userRecord = await admin.auth().getUser(decodedToken.uid);
 
     req.user = {
-      user_id: decodedToken.uid,
+      uid: decodedToken.uid,
       email: decodedToken.email,
-      displayName: userRecord.displayName || "", // safe fallback
+      displayName: userRecord.displayName || "",
     };
 
     next();

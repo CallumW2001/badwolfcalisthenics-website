@@ -52,6 +52,32 @@ router.get("/exercises", async (req, res) => {
 // GET: Submission form
 router.get("/submit", authenticateFirebaseToken, async (req, res) => {
   try {
+    const { uid } = req.user;
+
+    // Check if user has any submissions
+    const submissionsSnapshot = await db
+      .collection("submissions")
+      .where("userId", "==", uid)
+      .limit(1) // only need to know if any exists
+      .get();
+
+    if (!submissionsSnapshot.empty) {
+      // User already submitted - redirect or render with message
+      return res.redirect("/competition/leaderboard?alreadySubmitted=true");
+      // Or instead render submission page with a message:
+      /*
+      return res.render("competition-submit", {
+        exercises: [],
+        currentPage: "competition",
+        title: "Submit Your Scores - Badwolf Calisthenics",
+        description: "Submit your competition scores",
+        canonical: "https://www.badwolfcalisthenics.com/competition/submit",
+        alreadySubmitted: true,
+      });
+      */
+    }
+
+    // If no submission, load exercises as usual
     const snapshot = await db.collection("competitionExercises").get();
     const exercises = snapshot.docs.map((doc) => ({
       id: doc.id,
@@ -64,6 +90,7 @@ router.get("/submit", authenticateFirebaseToken, async (req, res) => {
       title: "Submit Your Scores - Badwolf Calisthenics",
       description: "Submit your competition scores",
       canonical: "https://www.badwolfcalisthenics.com/competition/submit",
+      alreadySubmitted: false,
     });
   } catch (error) {
     console.error("Error loading exercises:", error);
@@ -74,40 +101,46 @@ router.get("/submit", authenticateFirebaseToken, async (req, res) => {
 // POST: Submit scores
 router.post("/submit", authenticateFirebaseToken, async (req, res) => {
   try {
-    const { user_id, email } = req.user;
-    const displayName = req.user.displayName;
-    const scores = req.body.scores || {}; // fallback to empty object
+    const { uid, email, displayName } = req.user;
+    const scores = req.body.scores || {};
 
     if (Object.keys(scores).length === 0) {
       return res.status(400).send("No scores submitted");
     }
 
+    let alreadySubmitted = false;
     const batch = db.batch();
 
     for (const [exerciseId, points] of Object.entries(scores)) {
       const submissionRef = db
         .collection("submissions")
-        .doc(`${user_id}_${exerciseId}`);
+        .doc(`${uid}_${exerciseId}`);
 
       const doc = await submissionRef.get();
-      if (doc.exists) continue; // prevent double submission
+      if (doc.exists) {
+        alreadySubmitted = true;
+        break; // stop loop early if any already submitted
+      }
 
       batch.set(submissionRef, {
-        userId: user_id,
+        userId: uid,
         userEmail: email,
         userName: displayName,
         exerciseId,
         points: Number(points),
-        timestamp: new Date(),
+        timestamp: admin.firestore.FieldValue.serverTimestamp(),
       });
     }
 
-    await batch.commit();
+    if (alreadySubmitted) {
+      return res.redirect("/competition/leaderboard?alreadySubmitted=true");
+    }
 
-    res.redirect("/competition/leaderboard");
+    await batch.commit();
+    return res.redirect("/competition/leaderboard?success=true");
   } catch (error) {
-    console.error("Error submitting scores:", error);
-    res.status(500).send("Server error");
+    console.error("Error submitting scores:", error.stack || error);
+    res.status(500).send("Internal Server Error");
   }
 });
 
@@ -130,13 +163,19 @@ router.get("/leaderboard", async (req, res) => {
   });
 
   // Convert to array & sort
-  const sorted = Object.entries(leaderboard)
+  let sorted = Object.entries(leaderboard)
     .map(([email, { total, name }]) => ({
       email,
       displayName: name,
       total,
     }))
     .sort((a, b) => b.total - a.total);
+
+  // Add rank property (1-based)
+  sorted = sorted.map((entry, index) => ({
+    ...entry,
+    rank: index + 1,
+  }));
 
   res.render("competition-leaderboard", {
     leaderboard: sorted,
