@@ -1,0 +1,24 @@
+<head>
+  <link rel="stylesheet" href="/css/competition-exercises.css" />
+</head>
+
+<h1>Exercises & Scoring</h1>
+
+<h3>
+  The points for each exercise count for your BEST SET only, it is not
+  cumulative. If you do 10 pullups, that is 40 points. If you do a second set of
+  15, then that is 60 points. They don't stack to make 100. Categories marked
+  with (men) or (women) are gender specific. <br />
+  For duplicate exercises, like pullups or pull ups with a band, you do not get
+  points for doing each variation. You pick one variation, whichever you think
+  you will be strongest at. So if you do pullups with no band, you don't get
+  points for the banded variations and vice versa.
+</h3>
+<ul>
+  <% exercises.forEach(ex => { %>
+  <li class="excercise-list">
+    <%= ex.name %> - <%= ex.description %> <% if (ex.maxPoints) { %> (Max
+    Points: <%= ex.maxPoints %>) <% } %>
+  </li>
+  <% }) %>
+</ul>

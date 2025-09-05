@@ -1,0 +1,103 @@
+.training-plans-container {
+  width: 75%;
+  max-width: 700px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: #111;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
+  animation: fadeInUp 0.5s ease-out;
+}
+
+.training-plans-section {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.main-title {
+  font-family: "Orbitron", sans-serif;
+  font-size: 2.25rem;
+  color: #00aaff;
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.upload-form form,
+.user-plans {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.upload-form label {
+  color: #e0e0e0;
+  font-weight: bold;
+  margin-bottom: 0.25rem;
+}
+
+.upload-form input[type="email"],
+.upload-form input[type="file"] {
+  background-color: #222;
+  color: #e0e0e0;
+  border: 1px solid #333;
+  border-radius: 8px;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  font-family: "Orbitron", sans-serif;
+}
+
+.upload-form button {
+  background-color: #00aaff;
+  color: #000;
+  border: none;
+  padding: 0.9rem 1.2rem;
+  font-size: 1.1rem;
+  font-family: "Orbitron", sans-serif;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.upload-form button:hover {
+  background-color: #008fcc;
+}
+
+.plan-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.plan-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a1a1a;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-left: 4px solid #00aaff;
+  border-radius: 6px;
+}
+
+.plan-card a {
+  color: #00aaff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.plan-card a:hover {
+  text-decoration: underline;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

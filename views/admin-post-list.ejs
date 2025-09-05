@@ -1,0 +1,67 @@
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    text-align: center;
+  }
+  a {
+    color: #00aaff;
+    text-decoration: none;
+  }
+</style>
+
+<h1>Blog Posts</h1>
+<p><a href="/admin/blog/create">+ Create New Post</a></p>
+<% if (posts.length === 0) { %>
+<p>No posts found.</p>
+<% } else { %>
+<table>
+  <thead>
+    <tr>
+      <th>Slug</th>
+      <th>Title</th>
+      <th>Author</th>
+      <th>Published At</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% posts.forEach(post => { %>
+    <tr>
+      <td><%= post.id %></td>
+      <td><%= post.title %></td>
+      <td><%= post.author || 'Unknown' %></td>
+      <td>
+        <%= post.publishedAt ? new Date(post.publishedAt._seconds *
+        1000).toLocaleDateString() : 'N/A' %>
+      </td>
+      <td class="actions">
+  <a href="/admin/blog/edit/<%= post.id %>">Edit</a>
+  <form 
+    action="/admin/blog/delete/<%= post.id %>" 
+    method="POST" 
+    style="display:inline" 
+    onsubmit="return confirm('Delete this post?');"
+  >
+    <button type="submit" style="
+      background-color: #ff4d4d;
+      border: none;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.9rem;
+    ">
+      Delete
+    </button>
+  </form>
+</td>
+
+    </tr>
+    <% }) %>
+  </tbody>
+</table>
+<% } %>

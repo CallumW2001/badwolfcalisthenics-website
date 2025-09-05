@@ -1,0 +1,208 @@
+<link
+  rel="preload"
+  href="https://fonts.gstatic.com/s/orbitron/v34/yMJRMIlzdpvBhQQL_Qq7dy0.woff2"
+  as="font"
+  type="font/woff2"
+  crossorigin="anonymous"
+/>
+<link rel="stylesheet" href="/css/styles.css" />
+
+<link rel="stylesheet" href="/css/header.css" />
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+
+<header class="bw-header">
+  <div class="bw-logo">
+    <img
+      src="/images/badwolf_calisthenics_logo-removebg-preview.png"
+      alt="Badwolf Calisthenics Logo"
+      width="60"
+      height="120"
+    />
+    <a href="/" class="bw-title <%= currentPage === 'home' ? 'active' : '' %>">
+      Badwolf Calisthenics
+    </a>
+  </div>
+
+  <button class="bw-menu-toggle" aria-label="Toggle menu">☰</button>
+
+  <nav class="bw-navbar-desktop">
+    <ul class="bw-nav-list">
+      <li>
+        <a
+          href="/competition"
+          class="<%= currentPage === 'competition' ? 'active' : '' %>"
+          >Competition</a
+        >
+      </li>
+      <li id="bw-tab-training" style="display: none">
+        <a
+          href="/your-training-plans"
+          class="<%= currentPage === 'your-training-plans' ? 'active' : '' %>"
+          >Your Training Plans</a
+        >
+      </li>
+      <li>
+        <a href="/" class="<%= currentPage === 'home' ? 'active' : '' %>"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a href="/about" class="<%= currentPage === 'about' ? 'active' : '' %>"
+          >About</a
+        >
+      </li>
+      <li>
+        <a
+          href="/reviews"
+          class="<%= currentPage === 'reviews' ? 'active' : '' %>"
+          >Reviews</a
+        >
+      </li>
+      <li>
+        <a
+          href="/skills"
+          class="<%= currentPage === 'skills' ? 'active' : '' %>"
+          >Skills</a
+        >
+      </li>
+      <li>
+        <a
+          href="/contact"
+          class="<%= currentPage === 'contact' ? 'active' : '' %>"
+          >Contact</a
+        >
+      </li>
+      <li>
+        <a href="/blog" class="<%= currentPage === 'blog' ? 'active' : '' %>"
+          >Blog</a
+        >
+      </li>
+      <li class="bw-auth-links">
+        <a href="/login" id="bw-login" class="bw-button">Login</a>
+        <a href="/signup" id="bw-signup" class="bw-button">Sign Up</a>
+        <a href="/" id="bw-logout" class="bw-button" style="display: none"
+          >Logout</a
+        >
+      </li>
+    </ul>
+  </nav>
+
+  <nav class="bw-navbar-overlay">
+    <ul class="bw-overlay-list">
+      <li><a href="/competition">Competition</a></li>
+      <li id="bw-tab-training-mobile" style="display: none">
+        <a href="/your-training-plans">Your Training Plans</a>
+      </li>
+      <li><a href="/">Home</a></li>
+      <li><a href="/about">About</a></li>
+      <li><a href="/reviews">Reviews</a></li>
+      <li><a href="/skills">Skills</a></li>
+      <li><a href="/contact">Contact</a></li>
+      <li><a href="/blog">Blog</a></li>
+      <li class="bw-auth-links-mobile">
+        <a href="/login" id="bw-login-mobile" class="bw-button">Login</a>
+        <a href="/signup" id="bw-signup-mobile" class="bw-button">Sign Up</a>
+        <a
+          href="/"
+          id="bw-logout-mobile"
+          class="bw-button"
+          style="display: none"
+          >Logout</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  window.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.querySelector(".bw-menu-toggle");
+    const navbarOverlay = document.querySelector(".bw-navbar-overlay");
+
+    if (menuToggle && navbarOverlay) {
+      menuToggle.addEventListener("click", () => {
+        navbarOverlay.classList.toggle("open");
+      });
+
+      navbarOverlay.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navbarOverlay.classList.remove("open");
+        });
+      });
+    }
+
+    const tabTraining = document.getElementById("bw-tab-training");
+    const tabTrainingMobile = document.getElementById("bw-tab-training-mobile");
+
+    const loginBtn = document.getElementById("bw-login");
+    const signupBtn = document.getElementById("bw-signup");
+    const logoutBtn = document.getElementById("bw-logout");
+
+    const loginBtnMobile = document.getElementById("bw-login-mobile");
+    const signupBtnMobile = document.getElementById("bw-signup-mobile");
+    const logoutBtnMobile = document.getElementById("bw-logout-mobile");
+
+    const show = (el) => el && (el.style.display = "inline-block");
+    const hide = (el) => el && (el.style.display = "none");
+
+    firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        show(tabTraining);
+        show(tabTrainingMobile);
+
+        show(logoutBtn);
+        hide(loginBtn);
+        hide(signupBtn);
+
+        show(logoutBtnMobile);
+        hide(loginBtnMobile);
+        hide(signupBtnMobile);
+      } else {
+        hide(tabTraining);
+        hide(tabTrainingMobile);
+
+        hide(logoutBtn);
+        show(loginBtn);
+        show(signupBtn);
+
+        hide(logoutBtnMobile);
+        show(loginBtnMobile);
+        show(signupBtnMobile);
+      }
+    });
+
+    const signOutUser = () => {
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          window.location.href = "/";
+        })
+        .catch((error) => {
+          console.error("Error signing out:", error);
+        });
+    };
+
+    if (logoutBtn) {
+      logoutBtn.addEventListener("click", (e) => {
+        e.preventDefault();
+        signOutUser();
+      });
+    }
+
+    if (logoutBtnMobile) {
+      logoutBtnMobile.addEventListener("click", (e) => {
+        e.preventDefault();
+        signOutUser();
+      });
+    }
+  });
+</script>

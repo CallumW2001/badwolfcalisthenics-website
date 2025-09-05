@@ -1,0 +1,83 @@
+<style>
+  main {
+    padding: 20px;
+  }
+
+  .blog-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .blog-list-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    cursor: pointer;
+    height: 200px;
+  }
+
+  .blog-list-item a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    color: white;
+    text-decoration: none;
+    position: relative;
+  }
+
+  /* Background image */
+  .blog-list-item a::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.3s ease;
+    border-radius: 10px;
+    z-index: 1;
+  }
+
+  li a:hover::before {
+    transform: scale(1.05);
+  }
+
+  /* Title overlay at bottom */
+  .post-title {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+    padding: 12px 15px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    z-index: 2;
+  }
+</style>
+
+<main>
+  <% if (posts && posts.length > 0) { %>
+  <ul class="blog-list">
+    <% posts.forEach(post => { %>
+    <li class="blog-list-item">
+      <a href="/blog/<%= post.slug %>" style="--bg-image: url('<%= post.imageUrl %>')">
+        <style>
+          a[href="/blog/<%= post.slug %>"]::before {
+            background-image: var(--bg-image);
+          }
+        </style>
+        <div class="post-title"><%= post.title %></div>
+      </a>
+    </li>
+    <% }) %>
+  </ul>
+  <% } else { %>
+  <p>No blog posts found.</p>
+  <% } %>
+</main>

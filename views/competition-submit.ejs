@@ -1,0 +1,26 @@
+<head>
+  <link rel="stylesheet" href="/css/competition-submit.css" />
+</head>
+
+<h1>Submit Your Scores</h1>
+<p class="red">
+  Warning. You can only submit your scores once. Make sure you have totaled up
+  your scores properly before continuing.
+</p>
+<form method="POST" action="/competition/submit">
+  <% exercises.forEach(ex => { %>
+  <div class="exercise-input">
+    <label for="<%= ex.id %>"><%= ex.name %>:</label>
+    <input
+      class="box"
+      type="number"
+      id="<%= ex.id %>"
+      name="scores[<%= ex.id %>]"
+      min="0"
+      max="<%= ex.maxPoints || 1000 %>"
+      required
+    />
+  </div>
+  <% }) %>
+  <button type="submit">Submit Scores</button>
+</form>

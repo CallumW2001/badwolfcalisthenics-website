@@ -1,0 +1,128 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: "Orbitron", sans-serif;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  text-align: center;
+  background-color: #111;
+  padding: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.footer-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.instagram-link {
+  display: flex;
+  animation: fadeInUp 1.8s ease-out;
+  height: 48px;
+  width: 48px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(225, 48, 108, 0.5);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.instagram-link svg {
+  height: 24px;
+  width: 24px;
+  fill: #e1306c;
+  transition: fill 0.3s ease;
+}
+
+.instagram-link:hover {
+  background-color: #cc3b6b3a;
+  box-shadow: 0 0 10px #e1306c;
+  transform: scale(1.1);
+}
+
+.instagram-link:hover svg {
+  fill: white;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.footer-column:last-child {
+  align-items: flex-end;
+  margin-right: 50px;
+}
+
+.footer-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.instagram-link {
+  display: flex;
+  animation: fadeInUp 1.8s ease-out;
+  height: 48px;
+  width: 48px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(225, 48, 108, 0.5);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.instagram-link svg {
+  height: 24px;
+  width: 24x;
+  fill: #e1306c;
+  transition: fill 0.3s ease;
+}
+
+.instagram-link:hover {
+  background-color: #cc3b6b3a;
+  box-shadow: 0 0 10px #e1306c;
+  transform: scale(1.1);
+}
+
+.instagram-link:hover svg {
+  fill: white;
+}

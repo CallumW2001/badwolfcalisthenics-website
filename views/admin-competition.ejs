@@ -1,0 +1,33 @@
+<h1>Admin: Competition Exercises</h1>
+<p><a href="/admin/competition/new">+ Add New Exercise</a></p>
+
+<ul>
+  <% exercises.forEach(ex => { %>
+  <li>
+    <strong><%= ex.name %></strong> — <%= ex.description %> — Max: <%=
+    ex.maxPoints %> pts
+    <form
+      method="POST"
+      action="/admin/competition/delete/<%= ex.id %>"
+      style="display: inline"
+    >
+      <button onclick="return confirm('Delete this exercise?')">Delete</button>
+    </form>
+  </li>
+  <% }) %>
+</ul>
+
+<style>
+  main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  p > a {
+    text-align: center;
+    color: #00aaff;
+    text-decoration: none;
+    font-weight: bold;
+    text-decoration: none;
+  }
+</style>

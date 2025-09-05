@@ -1,0 +1,148 @@
+.landing {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+  text-align: center;
+  color: #fff;
+  overflow: hidden;
+  height: 100%;
+}
+
+.hero-heading {
+  min-height: 4.5rem;
+}
+
+main {
+  flex: 1;
+  padding: 2rem 1rem;
+}
+
+.landing-text h2 {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  animation: fadeInUp 1s ease-out;
+}
+
+.landing-text p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  animation: fadeInUp 1.2s ease-out;
+}
+
+.cta-button {
+  animation: fadeInUp 1.5s ease-out;
+  margin-top: 25px;
+  background-color: #007bff;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  display: inline-block;
+  text-decoration: none;
+  font-family: "Orbitron", sans-serif;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #0056b3;
+}
+
+.cta-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.cta-button {
+  height: 48px;
+  line-height: 48px;
+  padding: 0 1.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+}
+
+.instagram-link {
+  animation: fadeInUp 1.8s ease-out;
+  margin-top: 25px;
+  display: inline-flex;
+  height: 48px;
+  width: 48px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #fff;
+  box-shadow: 0 0 6px rgba(225, 48, 108, 0.5);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
+}
+
+.instagram-link svg {
+  height: 24px;
+  width: 24px;
+  fill: #e1306c;
+  transition: fill 0.3s ease;
+}
+
+.instagram-link:hover {
+  background-color: #cc3b6b3a;
+  box-shadow: 0 0 10px #e1306c;
+  transform: scale(1.1);
+}
+
+.instagram-link:hover svg {
+  fill: white;
+}
+
+.landing img {
+  animation: fadeInUp 2s ease-out;
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .landing-text h2 {
+    font-size: 1.5rem;
+  }
+
+  .landing-text p {
+    font-size: 0.75rem;
+  }
+
+  .cta-button {
+    display: flex;
+    width: 100%;
+    padding: 0.75rem;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .instagram-link {
+    width: 40px;
+    height: 40px;
+  }
+
+  .instagram-link svg {
+    height: 20px;
+    width: 40px;
+  }
+}

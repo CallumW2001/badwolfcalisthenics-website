@@ -1,0 +1,19 @@
+<link rel="stylesheet" href="css/skills.css" />
+
+<section>
+  <h2>Skills</h2>
+  <div class="gallery-grid">
+    <img src="images/Room 2.jpg" alt="Calisthenics Pose 1" />
+    <img src="images/Room 2.jpg" alt="Calisthenics Pose 2" />
+    <img src="images/Room 2.jpg" alt="Calisthenics Pose 3" />
+    <img src="images/Room 2.jpg" alt="Calisthenics Pose 4" />
+    <img src="images/Room 2.jpg" alt="Calisthenics Pose 5" />
+    <img src="images/Room 2.jpg" alt="Calisthenics Pose 6" />
+  </div>
+</section>
+
+<script>
+  document.querySelectorAll(".gallery-grid img").forEach((img, i) => {
+    img.style.setProperty("--img-index", i);
+  });
+</script>

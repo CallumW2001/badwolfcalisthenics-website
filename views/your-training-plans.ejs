@@ -1,0 +1,43 @@
+<link rel="stylesheet" href="/css/your-training-plans.css" />
+
+<section class="training-plans-section">
+  <div class="training-plans-container">
+    <% const adminEmails = ["cwilkinson2017@outlook.com"]; %> <% if
+    (adminEmails.includes(userEmail)) { %>
+    <div class="upload-form">
+      <h2 class="main-title">Upload Training Plan</h2>
+      <form
+        action="/admin/uploadTrainingPlan"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <label for="targetEmail">User Email</label>
+        <input
+          type="email"
+          name="targetEmail"
+          required
+          placeholder="User email"
+        />
+
+        <label for="trainingPlan">Training Plan File</label>
+        <input type="file" name="trainingPlan" required />
+
+        <button type="submit">Upload</button>
+      </form>
+    </div>
+
+    <% } else { %>
+    <div class="user-plans">
+      <h2 class="main-title">Your Training Plans</h2>
+      <ul class="plan-list">
+        <% plans.forEach(plan => { %>
+        <li class="plan-card">
+          <span><%= plan.fileName %></span>
+          <a href="<%= plan.fileUrl %>" target="_blank" download>Download</a>
+        </li>
+        <% }) %>
+      </ul>
+    </div>
+    <% } %>
+  </div>
+</section>

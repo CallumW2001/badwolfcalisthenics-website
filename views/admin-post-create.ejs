@@ -1,0 +1,146 @@
+<style>
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  a {
+    color: #00aaff;
+    text-decoration: none;
+  }
+  .admin-container {
+    width: 75%;
+    max-width: 700px;
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background-color: #111;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 170, 255, 0.2);
+    animation: fadeInUp 0.6s ease both;
+  }
+
+  .admin-container h1 {
+    font-size: 2.5rem;
+    color: #00aaff;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+
+  .admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    width: 75%;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .admin-form label {
+    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+    color: #e0e0e0;
+  }
+
+  .admin-form input,
+  .admin-form textarea {
+    width: 75%;
+    background-color: #222;
+    color: #e0e0e0;
+    border: none;
+    border-radius: 8px;
+    padding: 0.85rem 1rem;
+    font-size: 1rem;
+    font-family: "Orbitron", sans-serif;
+  }
+
+  .admin-form textarea {
+    resize: vertical;
+  }
+
+  .admin-form button {
+    background-color: #00aaff;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    border: none;
+    padding: 1rem;
+    transition: background-color 0.3s ease;
+    font-family: "Orbitron", sans-serif;
+  }
+
+  .admin-form button:hover {
+    background-color: #008fcc;
+  }
+
+  .admin-container p a {
+    display: inline-block;
+    margin-top: 1rem;
+    color: #00aaff;
+    text-decoration: none;
+    font-weight: bold;
+    text-align: center;
+  }
+
+  .admin-container p a:hover {
+    text-decoration: underline;
+  }
+</style>
+
+<h1 class="main-title">Create New Blog Post</h1>
+
+<form method="POST" action="/admin/blog/create" class="admin-form">
+  <label for="slug">Slug (URL identifier)</label>
+  <input
+    type="text"
+    id="slug"
+    name="slug"
+    required
+    placeholder="e.g. my-first-post"
+  />
+
+  <label for="title">Title</label>
+  <input
+    type="text"
+    id="title"
+    name="title"
+    required
+    placeholder="Post title"
+  />
+
+  <label for="description">Meta Description</label>
+  <input
+    type="text"
+    id="description"
+    name="description"
+    placeholder="Short SEO-friendly description"
+  />
+
+  <label for="imageUrl">Image URL</label>
+  <input
+    type="url"
+    id="imageUrl"
+    name="imageUrl"
+    placeholder="https://example.com/image.jpg"
+  />
+
+  <label for="content">Content</label>
+  <textarea
+    id="content"
+    name="content"
+    rows="10"
+    required
+    placeholder="Write your post content here..."
+  ></textarea>
+
+  <label for="author">Author</label>
+  <input type="text" id="author" name="author" placeholder="Your name" />
+
+  <button type="submit">Publish Post</button>
+</form>
+
+<p><a href="/admin/blog">← Back to post list</a></p>

@@ -1,0 +1,158 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Orbitron", Arial, sans-serif;
+}
+main {
+  flex-grow: 1;
+  display: block;
+  overflow-y: visible;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  font-family: "Orbitron", sans-serif;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+  overflow-x: hidden;
+}
+
+.review-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.card {
+  background-color: #1a1a1a;
+  padding: 1rem;
+  border-radius: 8px;
+  border-left: 4px solid #00aaff;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.gallery-grid img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.main-title {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: #00aaff;
+  margin-bottom: 1rem;
+}
+
+.login-container input,
+.signup-container input {
+  background-color: #222;
+  color: #e0e0e0;
+}
+
+.login-container button,
+.signup-container button {
+  background-color: #00aaff;
+  color: #000;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-container button:hover,
+.signup-container button:hover {
+  background-color: #008fcc;
+}
+
+.login-container p,
+.signup-container p {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+  color: #ccc;
+}
+
+.login-container p a,
+.signup-container p a {
+  color: #00aaff;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.login-container p a:hover,
+.signup-container p a:hover {
+  text-decoration: underline;
+}
+
+.login-container,
+.signup-container {
+  width: 75%;
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem 2.5rem;
+  background-color: #111;
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 170, 255, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.login-container h2,
+.signup-container h2 {
+  font-size: 2.5rem;
+  color: #00aaff;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.login-container form,
+.signup-container form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.login-container input,
+.signup-container input,
+.login-container button,
+.signup-container button {
+  width: 100%;
+  max-width: 400px;
+  padding: 0.85rem 1rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+  border: none;
+  font-family: "Orbitron", sans-serif;
+}
+
+@keyframes fadeInUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}

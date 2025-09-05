@@ -1,0 +1,13 @@
+main {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+.excercise-list {
+  list-style: none;
+  margin-bottom: 1.5rem;
+  font-weight: bold;
+  font-size: x-large;
+  color: #00aaff;
+  font-family: "Courier New", Courier, monospace;
+}
